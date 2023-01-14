@@ -45,8 +45,8 @@ const Stocks = ({ data }) => {
   return (
     <>
       <div className="">
-        <Bar data={chartData} options={options} />
-        <Line data={chartData} options={options} />
+        <Bar data={chartData} />
+        <Line data={chartData} />
       </div>
       {/* <Chart type="line" data={chartData} /> */}
       {/* <Doughnut data={chartData} /> */}

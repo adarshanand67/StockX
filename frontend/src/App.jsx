@@ -2,12 +2,14 @@ import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
 import reactLogo from "./assets/react.svg";
 import Data from "./components/Data";
+import Dropdown from "./components/Dropdown";
 import Modals from "./components/Modals";
 import SignIn from "./components/SignIn";
 import Signup from "./components/Signup";
 import Spinners from "./components/Spinners";
 import Stocks from "./components/Stocks";
 import NavigationBar from "./container/Nav";
+import { companies,stockExchange } from "./utils/companies";
 
 function App() {
   const [data, setData] = useState([]);
@@ -38,7 +40,16 @@ function App() {
           <Route path="/data" element={<Data />} />
           <Route path="/spinners" element={<Spinners />} />
           <Route path="/stocks" element={<Stocks data={data} />} />
-          <Route path="/" element={<Modals />} />
+          <Route path="/company" element={<Dropdown companies = {companies}/>} />
+          <Route path="/stockExchange" element={<Dropdown companies = {stockExchange}/>} />
+          <Route
+            path="/"
+            element={
+              <>
+                <Modals />
+              </>
+            }
+          />
         </Routes>
       </Router>
     </>
