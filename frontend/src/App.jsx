@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
 import reactLogo from "./assets/react.svg";
 import Data from "./components/Data";
+import Modals from "./components/Modals";
 import SignIn from "./components/SignIn";
 import Signup from "./components/Signup";
 import Spinners from "./components/Spinners";
@@ -35,9 +36,9 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/data" element={<Data />} />
-          {/* <Route path="/spinners" element={<Spinners />} /> */}
-          <Route path="/stocks" element={<Stocks />} />
-          {/* <Route path="/" element={<Data />} /> */}
+          <Route path="/spinners" element={<Spinners />} />
+          <Route path="/stocks" element={<Stocks data={data} />} />
+          <Route path="/" element={<Modals />} />
         </Routes>
       </Router>
     </>

@@ -4,7 +4,7 @@ import { ScaleLoader } from "react-spinners";
 const Spinners = () => {
   return (
     <ScaleLoader
-      color="#36d7b7"
+      color="#1A5BE3"
       height={50}
       loading
       speedMultiplier={1.5}
