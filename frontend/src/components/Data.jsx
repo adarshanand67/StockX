@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import DisplayData from "./DisplayData";
 import Spinners from "./Spinners";
 
 const Data = () => {
@@ -10,7 +11,6 @@ const Data = () => {
     // fetch json file from src/data/json/BSE.json
     const response = await fetch("src/data/json/BSE.json");
     const data = await response.json();
-    console.log(data);
 
     setData(data);
     setLoading(false);
@@ -27,9 +27,7 @@ const Data = () => {
         <Spinners />
       ) : (
         <div>
-          <h1 className="text-3xl bg-pink-400 font-bold underline">
-            BSE.NS data
-          </h1>
+          <DisplayData data={data}/>
         </div>
       )}
     </>

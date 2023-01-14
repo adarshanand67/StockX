@@ -1,8 +1,6 @@
 import React from "react";
 
 const DisplayData = ({ data }) => {
-  console.log(data);
-  // console.log(data[0]);
   return (
     <>
       {data.map((item, index) => {
