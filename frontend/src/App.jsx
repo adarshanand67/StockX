@@ -20,6 +20,7 @@ function App() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedCompany, setSelectedCompany] = useState(companies[0]);
+  const [duration, setDuration] = useState("3M");
   const toast = useToast();
 
   const handleChange = (e) => {
@@ -32,20 +33,46 @@ function App() {
     });
   };
 
-  const fetchCompanyData = async (company) => {
+  const fetchCompanyData = async (company, duration) => {
     // TODO - Fetch Data from API
     const URL = `src/data/json/${company}.json`;
     const response = await fetch(URL);
     const data = await response.json();
 
+    if (duration == "1D" && data.length > 1) {
+      // only the last day
+      data.splice(0, data.length - 1);
+    } else if (duration == "1W" && data.length > 6) {
+      // only the last 7 days
+      data.splice(0, data.length - 6);
+    } else if (duration == "1M" && data.length > 30) {
+      // only the last 30 days
+      data.splice(0, data.length - 30);
+    } else if (duration == "3M" && data.length > 90) {
+      // only the last 90 days
+      data.splice(0, data.length - 90);
+    } else if (duration == "6M" && data.length > 180) {
+      // only the last 180 days
+      data.splice(0, data.length - 180);
+    } else if (duration == "1Y" && data.length > 365) {
+      // only the last 365 days
+      data.splice(0, data.length - 365);
+    } else if (duration == "2Y" && data.length > 730) {
+      // only the last 730 days
+      data.splice(0, data.length - 730);
+    } else if (duration == "5Y" && data.length > 1825) {
+      // only the last 1825 days
+      data.splice(0, data.length - 1825);
+    }
+
     setData(data);
     setLoading(false);
   };
-  // console.log(data);
+  console.log("selectedCompany: ", selectedCompany, "duration: ", duration);
 
   useEffect(() => {
-    fetchCompanyData(selectedCompany); //fetch data from whenever company changes
-  }, [selectedCompany]);
+    fetchCompanyData(selectedCompany, duration); //fetch data from whenever company changes
+  }, [selectedCompany, duration]);
 
   console.log(data);
 
@@ -74,7 +101,12 @@ function App() {
             element={
               <>
                 {/* <Dropdown companies={companies} /> */}
-                {companyOption(selectedCompany, handleChange)}
+                {companyOption(
+                  selectedCompany,
+                  handleChange,
+                  duration,
+                  setDuration
+                )}
                 <DisplayCharts data={data} />
               </>
             }
@@ -84,7 +116,12 @@ function App() {
             element={
               <>
                 {/* <Dropdown companies={stockExchange} /> */}
-                {stockExchangeOption(selectedCompany, handleChange)}
+                {stockExchangeOption(
+                  selectedCompany,
+                  handleChange,
+                  duration,
+                  setDuration
+                )}
                 <DisplayCharts data={data} />
               </>
             }
