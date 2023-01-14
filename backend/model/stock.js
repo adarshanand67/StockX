@@ -6,33 +6,33 @@ const stockSchema = new mongoose.Schema({
     name: {
         type: String,
         trim: true,
-        required: true,
+        // required: true,
     },
-    date: {
+    Date: {
         type: Date,
         default: Date.now,
     },
-    open: {
+    Open: {
         type: Number,
         required: true,
     },
-    high: {
+    High: {
         type: Number,
         required: true,
     },
-    low: {
+    Low: {
         type: Number,
         required: true,
     },
-    close: {
+    Close: {
         type: Number,
         required: true,
     },
-    adjClose: {
+    "Adj Close": {
         type: Number,
         required: true,
     },
-    volume: {
+    Volume: {
         type: Number,
         required: true,
     },
