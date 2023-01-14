@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Modal = ({ children }) => {
+const Modal = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const openModal = () => setIsOpen(true);
@@ -27,7 +27,6 @@ const Modal = ({ children }) => {
               >
                 Close
               </button>
-              {children}
             </span>
           </span>
         )}
