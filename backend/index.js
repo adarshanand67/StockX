@@ -10,6 +10,7 @@ const fs = require("fs");
 const cors = require("cors");
 const authRoutes = require("./routes/auth");
 const userRoutes = require("./routes/user");
+const stockRoutes = require("./routes/stock");
 const port = process.env.PORT || 8081;
 
 app.use(morgan("dev"));
@@ -20,6 +21,7 @@ app.use(cors());
 
 app.use("/", authRoutes);
 app.use("/", userRoutes);
+app.use("/", stockRoutes);
 
 // api docs
 app.use("/", (req, res) => {
