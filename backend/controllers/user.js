@@ -5,7 +5,7 @@ exports.userById = (req, res, next, id) => {
   User.findById(id).exec((err, user) => {
     if (err || !user) {
       return res.status(400).json({
-        error: "User not found",
+        error : "User not found",
       });
     }
     req.profile = user;
@@ -15,10 +15,10 @@ exports.userById = (req, res, next, id) => {
 
 exports.hasAuthorization = (req, res, next) => {
   const authorized =
-    req.profile && req.auth && req.profile._id === req.auth._id;
+      req.profile && req.auth && req.profile._id === req.auth._id;
   if (!authorized) {
     return res.status(403).json({
-      error: "User is not authorized",
+      error : "User is not authorized",
     });
   }
   next();
@@ -26,13 +26,14 @@ exports.hasAuthorization = (req, res, next) => {
 
 exports.allUsers = (req, res) => {
   User.find((err, users) => {
-    if (err) {
-      return res.status(400).json({
-        error: err,
-      });
-    }
-    res.json(users);
-  }).select("name email created updated");
+        if (err) {
+          return res.status(400).json({
+            error : err,
+          });
+        }
+        res.json(users);
+      })
+      .select("name email created updated");
 };
 
 exports.getUser = (req, res) => {
@@ -48,7 +49,7 @@ exports.updateUser = (req, res) => {
   user.save((err, result) => {
     if (err) {
       return res.status(400).json({
-        error: err,
+        error : err,
       });
     }
     user.hash_password = undefined;
@@ -62,11 +63,11 @@ exports.deleteUser = (req, res) => {
   user.remove((err, user) => {
     if (err) {
       return res.status(400).json({
-        error: err,
+        error : err,
       });
     }
     res.json({
-      message: "User deleted successfully",
+      message : "User deleted successfully",
     });
   });
 };

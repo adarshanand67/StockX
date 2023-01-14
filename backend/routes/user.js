@@ -6,7 +6,7 @@ const {
   updateUser,
   deleteUser,
 } = require("../controllers/user");
-const { requireSignin } = require("../controllers/auth");
+const {requireSignin} = require("../controllers/auth");
 
 const router = express.Router();
 
