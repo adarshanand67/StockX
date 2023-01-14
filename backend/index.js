@@ -28,16 +28,16 @@ app.use("/", (req, res) => {
   fs.readFile("docs/apiDocs.json", (err, data) => {
     if (err) {
       res.status(400).json({
-        error: err,
+        error : err,
       });
     }
     res.json(JSON.parse(data));
   });
 });
 
-app.use(function (err, req, res, next) {
+app.use(function(err, req, res, next) {
   if (err.name === "UnauthorizedError") {
-    res.status(401).json({ error: "Unauthorised!" });
+    res.status(401).json({error : "Unauthorised!"});
   } else {
     next(err);
   }
@@ -47,17 +47,10 @@ dotenv.config();
 
 // MongoDB
 mongoose.set("strictQuery", false);
-mongoose
-  .connect(process.env.MONGO_URI, { useNewUrlParser: true })
-  .then(() => console.log("DB Connected"));
+mongoose.connect(process.env.MONGO_URI, {useNewUrlParser : true})
+    .then(() => console.log("DB Connected"));
 
-mongoose.connection.on("error", (err) =>
-  console.log(`DB connection error: ${err.message}`)
-);
+mongoose.connection.on(
+    "error", (err) => console.log(`DB connection error: ${err.message}`));
 
-app.listen(port, () => {
-  console.log(`Listening on port ${port}`);
-});
-
-
-
+app.listen(port, () => { console.log(`Listening on port ${port}`); });
