@@ -37,12 +37,7 @@ const NavigationBar = () => {
           <Navbar.Link href="/stockExchange">Stock Exchange</Navbar.Link>
         </Navbar.Collapse>
       </Navbar>
-      <h1
-        className="text-2xl text-gray-700 m-10 font-semibold"
-        style={{ textAlign: "center" }}
-      >
-        Select your option to get started
-      </h1>
+     
     </>
   );
 };
