@@ -9,12 +9,16 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@chakra-ui/react": "^2.4.8",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
     "axios": "^1.2.2",
     "bootstrap": "^5.2.3",
     "chart.js": "^4.1.2",
     "flowbite": "^1.6.2",
     "flowbite-react": "^0.3.7",
     "font-awesome": "^4.7.0",
+    "framer-motion": "^8.4.3",
     "papaparse": "^5.3.2",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.0",

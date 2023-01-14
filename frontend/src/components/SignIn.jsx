@@ -1,18 +1,57 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import {useToast} from "@chakra-ui/react";
+
 const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const toast = useToast();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // TODO
     // Send POST request to server
+    const user = { email, password };
+    const body = {
+      email: user.email,
+      password: user.password,
+    };
+    console.log(body);
+    fetch("http://localhost:3000/signin", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    })
+      .then((res) => {
+        if (res.status === 200) {
+          toast({
+            title: "Logged in.",
+            description: "We've logged you in. Redirecting to dashboard...",
+            status: "success",
+            duration: 9000,
+            isClosable: true,
+          });
+          navigate("/"); // TODO: Redirect to dashboard
 
-    console.log(email, password);
-    console.log("User successfully signed in");
-    navigate("/stocks");
+        } else {
+          toast({
+            title: "Error logging in.",
+            description: "We've encountered an error logging you in. Please try again.",
+            status: "error",
+            duration: 9000,
+            isClosable: true,
+          });
+          const error = new Error(res.error);
+          throw error;
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        alert("Error logging in please try again");
+      });
   };
 
   // const handleForgetPassword = (e) => {
