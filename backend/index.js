@@ -1,44 +1,58 @@
-// Express app
-import dotenv from "dotenv";
-import express from "express";
-import mongoose from "mongoose";
-import morgan from "morgan";
-// import apiRoutes from "./routes/api.js";
-
-// use dotenv
-dotenv.config();
+const express = require("express");
 const app = express();
-const PORT = 3000 || process.env.PORT;
-const MONGO_URI = process.env.MONGO_URI;
+const morgan = require("morgan");
+const bodyParser = require("body-parser");
+var cookieParser = require("cookie-parser");
+const expressValidator = require("express-validator");
+const mongoose = require("mongoose");
+const dotenv = require("dotenv");
+const fs = require("fs");
+const cors = require("cors");
+const authRoutes = require("./routes/auth");
+const userRoutes = require("./routes/user");
+const port = process.env.PORT || 8081;
 
-// Add this in .env
-// PORT=3000
-// MONGO_URI=mongodb+srv://flipr:flipr@cluster0.8d8eto9.mongodb.net/?retryWrites=true&w=majority
-
-// use morgan
 app.use(morgan("dev"));
-// use json to parse request body
-app.use(express.json());
+app.use(bodyParser.json());
+app.use(cookieParser());
+app.use(expressValidator());
+app.use(cors());
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
+app.use("/", authRoutes);
+app.use("/", userRoutes);
+
+// api docs
+app.use("/", (req, res) => {
+  fs.readFile("docs/apiDocs.json", (err, data) => {
+    if (err) {
+      res.status(400).json({
+        error: err,
+      });
+    }
+    res.json(JSON.parse(data));
+  });
 });
 
-// Routes
-// app.use("/api", apiRoutes);
+app.use(function (err, req, res, next) {
+  if (err.name === "UnauthorizedError") {
+    res.status(401).json({ error: "Unauthorised!" });
+  } else {
+    next(err);
+  }
+});
 
-// Connect to MongoDB and start server
+dotenv.config();
+
+// MongoDB
 mongoose.set("strictQuery", false);
 mongoose
-  .connect(MONGO_URI, {
-    useNewUrlParser: true,
-  })
-  .then(() => {
-    console.log("Connected to MongoDB");
-    app.listen(PORT, () => {
-      console.log(`Server running on port ${PORT}`);
-    });
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+  .connect(process.env.MONGO_URI, { useNewUrlParser: true })
+  .then(() => console.log("DB Connected"));
+
+mongoose.connection.on("error", (err) =>
+  console.log(`DB connection error: ${err.message}`)
+);
+
+app.listen(port, () => {
+  console.log(`Listening on port ${port}`);
+});
