@@ -1,9 +1,5 @@
 const express = require("express");
-const {
-    stockByTicker,
-    allStocks,
-    getStock,
-} = require("../controllers/stock");
+const { stockByTicker, allStocks, getStock } = require("../controllers/stock");
 const { requireSignin } = require("../controllers/user");
 
 const router = express.Router();
