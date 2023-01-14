@@ -56,3 +56,20 @@ mongoose.connection.on("error", (err) =>
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
+
+const csv = require('fast-csv');
+// const fs = require('fs');
+const Stock = require("/model/stock");
+fs.createReadStream('data/ASHOKLEY.NS.csv')
+	.pipe(csv.parse({ headers: true }))
+	.on('data', (row) => {
+		// Create a new document with the data from the CSV file
+		const document = new Stock(row);
+
+		// Save the document to the collection
+		document.save((err) => {
+			if (err) {
+				console.error(err);
+			}
+		});
+	});
