@@ -1,5 +1,5 @@
-import React from 'react'
-import {ScaleLoader} from 'react-spinners'
+import React from "react";
+import { ScaleLoader } from "react-spinners";
 
 const Spinners = () => {
   return (
@@ -11,6 +11,6 @@ const Spinners = () => {
       width={10}
     />
   );
-}
+};
 
-export default Spinners
+export default Spinners;

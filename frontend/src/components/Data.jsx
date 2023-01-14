@@ -27,7 +27,7 @@ const Data = () => {
         <Spinners />
       ) : (
         <div>
-          <DisplayData data={data}/>
+          <DisplayData data={data} />
         </div>
       )}
     </>

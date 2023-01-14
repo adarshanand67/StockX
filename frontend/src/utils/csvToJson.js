@@ -41,7 +41,6 @@ fs.readdir(dataFolder, (err, files) => {
         }
         console.log("File has been created");
       });
-
     });
   });
 });
