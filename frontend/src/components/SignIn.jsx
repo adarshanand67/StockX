@@ -24,8 +24,8 @@ const SignIn = () => {
   return (
     <div className="bg-gray-200 min-h-screen flex items-center justify-center">
       <div className="w-full max-w-sm">
+        <h2 className="text-lg font-medium mb-4 text-center">Sign In</h2>
         <form className="bg-white p-6 rounded-lg shadow-md">
-          <h2 className="text-lg font-medium mb-4 text-center">Sign In</h2>
           <div className="mb-4">
             <label className="block text-gray-700 font-medium mb-2">
               Email

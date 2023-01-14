@@ -8,7 +8,7 @@ const Modal = ({ children }) => {
 
   return (
     <>
-      <span className="flex justify-center absolute bottom-5 right-5">
+      <span className="flex justify-center ">
         <button
           className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600"
           onClick={openModal}

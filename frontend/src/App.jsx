@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
 import reactLogo from "./assets/react.svg";
 import Data from "./components/Data";
 import Dropdown from "./components/Dropdown";
+import Feed from "./components/Feed";
+import Footers from "./components/Footers";
 import Modals from "./components/Modals";
 import SignIn from "./components/SignIn";
 import Signup from "./components/Signup";
@@ -62,11 +64,13 @@ function App() {
             path="/"
             element={
               <>
+                <Feed />
                 <Modals />
               </>
             }
           />
         </Routes>
+        <Footers />
       </Router>
     </>
   );
