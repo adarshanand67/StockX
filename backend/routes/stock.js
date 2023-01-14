@@ -1,9 +1,9 @@
 const express = require("express");
 const {
-    stockByTicker,
-    allStocks,
-    updateStocks,
-    getStock,
+  stockByTicker,
+  allStocks,
+  updateStocks,
+  getStock,
 } = require("../controllers/stock");
 // const { requireSignin } = require("../controllers/user");
 
