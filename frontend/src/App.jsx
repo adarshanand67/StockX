@@ -82,10 +82,10 @@ function App() {
       {/* Set routes to /signup */}
       <div className="">
         <h1
-          className="text-2xl text-gray-700 m-10 font-semibold"
+          className="text-2xl text-gray-700 m-2 font-semibold"
           style={{ textAlign: "center" }}
         >
-          Select your option to get started
+          Choose company and duration
         </h1>
       </div>
 
@@ -107,7 +107,11 @@ function App() {
                   duration,
                   setDuration
                 )}
-                <DisplayCharts data={data} company={selectedCompany} />
+                <DisplayCharts
+                  data={data}
+                  company={selectedCompany}
+                  duration={duration}
+                />
               </>
             }
           />
@@ -122,7 +126,11 @@ function App() {
                   duration,
                   setDuration
                 )}
-                <DisplayCharts data={data} company={selectedCompany} />
+                <DisplayCharts
+                  data={data}
+                  company={selectedCompany}
+                  duration={duration}
+                />
               </>
             }
           />

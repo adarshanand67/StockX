@@ -21,9 +21,11 @@ const dateFormater = (date) => {
   return `${monthName} ${year}`;
 };
 
-const DisplayCharts = ({ data, company }) => {
+const DisplayCharts = ({ data, company, duration }) => {
+  const RupeeSymbol = "\u20B9";
   const dateLabels = data.map((item) => dateFormater(item.Date));
-  console.log(dateLabels);
+  // console.log(dateLabels);
+  const pureDates = data.map((item) => item.Date);
   const openPrices = data.map((item) => item.Open);
   const closePrices = data.map((item) => item.Close);
   const highPrices = data.map((item) => item.High);
@@ -31,9 +33,22 @@ const DisplayCharts = ({ data, company }) => {
   const volume = data.map((item) => item.Volume);
   const adjClose = data.map((item) => item["Adj Close"]);
 
-  const WeekHigh52 = Math.max(...highPrices).toString();
-  const WeekLow52 = Math.min(...lowPrices).toString();
-  console.log(WeekHigh52, WeekLow52);
+  const WeekHigh52 = Math.max(...highPrices).toFixed(2);
+  const WeekLow52 = Math.min(...lowPrices).toFixed(2);
+  // console.log(WeekHigh52, WeekLow52);
+
+  const lastClosingPrice = closePrices[closePrices.length - 1];
+  const FirstOpeningPrice = openPrices[0];
+  const lastestDate = pureDates[pureDates.length - 1];
+
+  const priceChange = (lastClosingPrice - FirstOpeningPrice).toFixed(2);
+
+  const priceChangePercentage = (
+    (priceChange / FirstOpeningPrice) *
+    100
+  ).toFixed(2);
+  const greenOrRed = priceChange > 0 ? "green" : "red";
+  const upOrDownArrow = priceChange > 0 ? "▲" : "▼";
 
   const Open_vs_Date = {
     labels: dateLabels,
@@ -41,7 +56,7 @@ const DisplayCharts = ({ data, company }) => {
       {
         label: "Open Price vs Date",
         data: openPrices,
-        backgroundColor: "#1A5BE3",
+        backgroundColor: "#CCE4FF",
         borderColor: "#1A5BE3",
         borderWidth: 1,
       },
@@ -54,7 +69,7 @@ const DisplayCharts = ({ data, company }) => {
       {
         label: "Close Price vs Date",
         data: closePrices,
-        backgroundColor: "#1A5BE3",
+        backgroundColor: "#CCE4FF",
         borderColor: "#1A5BE3",
         borderWidth: 1,
       },
@@ -67,7 +82,7 @@ const DisplayCharts = ({ data, company }) => {
       {
         label: "High Price vs Date",
         data: highPrices,
-        backgroundColor: "#1A5BE3",
+        backgroundColor: "#CCE4FF",
         borderColor: "#1A5BE3",
         borderWidth: 1,
       },
@@ -80,7 +95,7 @@ const DisplayCharts = ({ data, company }) => {
       {
         label: "Low Price vs Date",
         data: lowPrices,
-        backgroundColor: "#1A5BE3",
+        backgroundColor: "#CCE4FF",
         borderColor: "#1A5BE3",
         borderWidth: 1,
       },
@@ -93,7 +108,7 @@ const DisplayCharts = ({ data, company }) => {
       {
         label: "Volume vs Date",
         data: volume,
-        backgroundColor: "#1A5BE3",
+        backgroundColor: "#CCE4FF",
         borderColor: "#1A5BE3",
         borderWidth: 1,
       },
@@ -106,7 +121,7 @@ const DisplayCharts = ({ data, company }) => {
       {
         label: "Adj Close vs Date",
         data: adjClose,
-        backgroundColor: "#1A5BE3",
+        backgroundColor: "#CCE4FF",
         borderColor: "#1A5BE3",
         borderWidth: 1,
       },
@@ -117,15 +132,45 @@ const DisplayCharts = ({ data, company }) => {
     <>
       <div className="w-5/6 mt-5 m-auto p-5 border border-gray-400 rounded-lg">
         {/* Company Name */}
-        <h1 className="text-3xl font-bold text-center">{company}</h1>
-        <div className="grid grid-rows-1 grid-cols-2 gap-4 m-5 p-4 border border-gray-400 rounded-lg">
-          <div className="flex flex-col items-center justify-center">
-            <h1 className=" font-bold bg-green-300">52 Week High</h1>
-            <h1 className=" ">{WeekHigh52}</h1>
+        <div className="grid grid-rows-2 grid-cols-2 m-5 rounded-lg">
+          {/* 1 */}
+          <div>
+            <h1 className="text-3xl font-bold text-gray-500 mx-5 py-2">
+              {company}{" "}
+              <span
+                className={`text-2xl font-bold text-${greenOrRed}-500`}
+              >{` ${upOrDownArrow} ${priceChange} (${priceChangePercentage}%) `}</span>
+              <br />
+              <span className="text-gray-400 font-thin text-lg ">
+                Last Updated : {lastestDate}
+              </span>
+            </h1>
           </div>
-          <div className="flex flex-col items-center justify-center">
-            <h1 className=" font-bold bg-red-400">52 Week Low</h1>
-            <h1 className=" ">{WeekLow52}</h1>
+          {/* 2 */}
+          <div></div>
+          {/* 3- 52 week data */}
+          <div className="flex gap-5 items-center justify-left mt-5 mx-5">
+            <div className="">
+              <h1 className=" font-bold bg-green-300 ">52 Week High</h1>
+              <h1 className=" text-center">{RupeeSymbol + WeekHigh52}</h1>
+            </div>
+            <div className="">
+              <h1 className="bg-red-400 font-bold ">52 Week Low</h1>
+              <h1 className=" text-center">{RupeeSymbol + WeekLow52}</h1>
+            </div>
+          </div>
+          {/* 4-  Last closeing + first FirstOpeningPrice*/}
+          <div className="flex gap-5 items-center justify-left mt-5 mx-5">
+            <div className="">
+              <h1 className=" font-bold bg-green-300">Last Closing Price</h1>
+              <h1 className=" text-center">{RupeeSymbol + lastClosingPrice}</h1>
+            </div>
+            <div className="">
+              <h1 className="bg-red-400 font-bold">First Opening Price</h1>
+              <h1 className=" text-center">
+                {RupeeSymbol + FirstOpeningPrice}
+              </h1>
+            </div>
           </div>
         </div>
         <div className="grid grid-rows-2 grid-cols-2 gap-4 m-5 p-5">
