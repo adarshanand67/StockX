@@ -9,7 +9,7 @@ import Signup from "./components/Signup";
 import Spinners from "./components/Spinners";
 import Stocks from "./components/Stocks";
 import NavigationBar from "./container/Nav";
-import { companies,stockExchange } from "./utils/companies";
+import { companies, stockExchange } from "./utils/companies";
 
 function App() {
   const [data, setData] = useState([]);
@@ -39,9 +39,25 @@ function App() {
           <Route path="/signin" element={<SignIn />} />
           <Route path="/data" element={<Data />} />
           <Route path="/spinners" element={<Spinners />} />
-          <Route path="/stocks" element={<Stocks data={data} />} />
-          <Route path="/company" element={<Dropdown companies = {companies}/>} />
-          <Route path="/stockExchange" element={<Dropdown companies = {stockExchange}/>} />
+          {/* <Route path="/stocks" element={} /> */}
+          <Route
+            path="/company"
+            element={
+              <>
+                <Dropdown companies={companies} />
+                <Stocks data={data} />
+              </>
+            }
+          />
+          <Route
+            path="/stockExchange"
+            element={
+              <>
+                <Dropdown companies={stockExchange} />
+                <Stocks data={data} />
+              </>
+            }
+          />
           <Route
             path="/"
             element={

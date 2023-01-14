@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 function Dropdown({ companies }) {
   // console.log(companies);
-  const [selectedOption, setSelectedOption] = useState("RELIANCE");
+  const [selectedOption, setSelectedOption] = useState(companies[0]);
   console.log(selectedOption);
 
   const handleChange = (e) => {
