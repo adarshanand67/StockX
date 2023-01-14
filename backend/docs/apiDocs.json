@@ -5,6 +5,6 @@
   "/signout": "signout",
   "/users": "get all users",
   "/user/:userId": "get/update/delete user",
-  "/stocks": "get all stocks",
+  "/stocks": "get/update all stocks",
   "/stocks/:stockTicker": "get stock of ticker"
 }
