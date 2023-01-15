@@ -196,23 +196,15 @@ function App() {
             }
           />
           <Route
-            path="/Compare"
-            element={
-              <>
-                <Compare data = {data} company = {selectedCompany} duration = {duration} handleDuration = {handleDuration} handleChange = {handleChange} />
-              </>
-            }
-          />
-          <Route
             path="/"
             element={
               <>
                 <Feed />
-                <Modals />
               </>
             }
           />
         </Routes>
+        <Modals />
         <Footers />
       </Router>
     </>
