@@ -8,6 +8,13 @@ import FullScreen from "highcharts/modules/full-screen.js";
 import PriceIndicator from "highcharts/modules/price-indicator.js";
 import StockTools from "highcharts/modules/stock-tools.js";
 import React from "react";
+import ashokley from "../assets/svg/ashokley.svg";
+import bse from "../assets/svg/bse.svg";
+import cipla from "../assets/svg/cipla.svg";
+import eicher from "../assets/svg/eicher.svg";
+import nse from "../assets/svg/nse.svg";
+import reliance from "../assets/svg/reliance.svg";
+import tatasteel from "../assets/svg/tatasteel.svg";
 import "../styles/TechnicalAnalysis.module.css";
 import { parseUnixTime } from "../utils/parseUnix";
 import { companyOption } from "./companyOption";
@@ -20,7 +27,37 @@ PriceIndicator(Highcharts);
 FullScreen(Highcharts);
 StockTools(Highcharts);
 
-const TechnicalAnalysis = ({ data, company, duration, handleDuration, handleChange }) => {
+const companyToSvgPath = (company) => {
+  if (company === "RELIANCE") {
+    return reliance;
+  }
+  if (company === "ASHOKLEY") {
+    return ashokley;
+  }
+  if (company === "CIPLA") {
+    return cipla;
+  }
+  if (company === "EICHERMOT") {
+    return eicher;
+  }
+  if (company === "TATASTEEL") {
+    return tatasteel;
+  }
+  if (company === "BSE") {
+    return bse;
+  }
+  if (company === "NSE") {
+    return nse;
+  }
+};
+
+const TechnicalAnalysis = ({
+  data,
+  company,
+  duration,
+  handleDuration,
+  handleChange,
+}) => {
   console.log(data, company);
   const date_ohlc = data.map((item) => [
     parseUnixTime(item.Date),
@@ -33,6 +70,8 @@ const TechnicalAnalysis = ({ data, company, duration, handleDuration, handleChan
     parseUnixTime(item.Date),
     parseFloat(item.Volume),
   ]);
+
+  const path = companyToSvgPath(company);
 
   const options = {
     yAxis: [
@@ -121,9 +160,9 @@ const TechnicalAnalysis = ({ data, company, duration, handleDuration, handleChan
       <div className="flex flex-col justify-center w-5/6 m-auto my-5">
         {companyOption(company, handleChange, duration, handleDuration)}
         {/* Title of company  */}
-        <h1 className="text-2xl font-bold text-center text-gray-800 my-5">
-          {company}
-        </h1>
+        <div className="flex justify-center my-10">
+          <img src={path} alt="company" width="200px" />
+        </div>
         <HighchartsReact
           highcharts={Highcharts}
           constructorType={"stockChart"}

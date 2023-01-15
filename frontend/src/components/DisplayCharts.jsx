@@ -230,7 +230,7 @@ const DisplayCharts = ({ data, company, duration }) => {
           </div>
           {/* 2 */}
           <div className="flex justify-end">
-            <img src={path} alt="ashokley" width="200px" />
+            <img src={path} alt="company" width="200px" />
           </div>
           {/* 3- 52 week data */}
           <div className="flex gap-5 items-center justify-left mt-5 mx-5">
