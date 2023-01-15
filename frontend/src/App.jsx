@@ -80,10 +80,10 @@ function App() {
   const fetchCompanyData = async (company, duration) => {
     // TODO - Fetch Data from API
     // const URL = `/src/data/json/${company}.json`;
-    const URL = `../src/data/json/${company}.json`;
+    const URL = `/json/${company}.json`
     // const URL = `http://localhost:3000/stocks/${company}`;
     // const URL = `${APP_URL}/stocks/${company}`;
-    const response = await fetch(URL);  
+    const response = await fetch(URL);
     const data = await response.json();
     // console.log(URL)
 
