@@ -1,8 +1,15 @@
 import { useToast } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Link,
+  Route,
+  Routes,
+  useParams,
+} from "react-router-dom";
 import reactLogo from "./assets/react.svg";
 import { companyOption } from "./components/companyOption";
+import Compare from "./components/Compare";
 import Data from "./components/Data";
 import DisplayCharts from "./components/DisplayCharts";
 import Dropdown from "./components/Dropdown";
@@ -10,16 +17,29 @@ import Modals from "./components/Modals";
 import SignIn from "./components/SignIn";
 import Signup from "./components/Signup";
 import Spinners from "./components/Spinners";
+import StockCharts from "./components/StockCharts";
 import { stockExchangeOption } from "./components/stockExchangeOption";
+import {
+  default as TechAnalysis,
+  default as TechnicalAnalysis,
+} from "./components/TechnicalAnalysis";
+import Text from "./components/Text";
 import Feed from "./container/Feed";
 import Footers from "./container/Footers";
 import NavigationBar from "./container/Nav";
-import { companies } from "./utils/companies";
+import { companies, stockExchange } from "./utils/companies";
 
 function App() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-  let [selectedCompany, setSelectedCompany] = useState(companies[0]);
+
+  const [selectedCompany, setSelectedCompany] = useState(companies[0]);
+  const [selectedStockExchange, setSelectedStockExchange] = useState(
+    stockExchange[0]
+  );
+
+  const companyNames = companies.map((company) => company);
+
   const [duration, setDuration] = useState("3M");
   const toast = useToast();
 
@@ -27,6 +47,26 @@ function App() {
     setSelectedCompany(e.target.value);
     toast({
       title: `Selected Company: ${e.target.value}`,
+      status: "info",
+      duration: 2000,
+      isClosable: true,
+    });
+  };
+
+  const handleExchangeChange = (e) => {
+    setSelectedStockExchange(e.target.value);
+    toast({
+      title: `Selected Stock Exchange: ${e.target.value}`,
+      status: "info",
+      duration: 2000,
+      isClosable: true,
+    });
+  };
+
+  const handleDuration = (e) => {
+    setDuration(e.target.value);
+    toast({
+      title: `Selected Duration: ${e.target.value}`,
       status: "info",
       duration: 2000,
       isClosable: true,
@@ -68,27 +108,27 @@ function App() {
     setData(data);
     setLoading(false);
   };
-  console.log("selectedCompany: ", selectedCompany, "duration: ", duration);
+  // console.log("selectedCompany: ", selectedCompany, "duration: ", duration);
 
   useEffect(() => {
-    fetchCompanyData(selectedCompany, duration); //fetch data from whenever company changes
-  }, [selectedCompany, duration]);
+    const url = window.location.href;
+    if (
+      url.includes("company") ||
+      url.includes("TechnicalAnalysis") ||
+      url.includes("Compare")
+    ) {
+      fetchCompanyData(selectedCompany, duration);
+    } else {
+      fetchCompanyData(selectedStockExchange, duration);
+    }
+  }, [selectedCompany, duration, selectedStockExchange]);
 
-  console.log(data);
+  // console.log(data);
 
   return (
     <>
       <NavigationBar />
       {/* Set routes to /signup */}
-      <div className="">
-        <h1
-          className="text-2xl text-gray-700 m-2 font-semibold"
-          style={{ textAlign: "center" }}
-        >
-          Choose company and duration
-        </h1>
-      </div>
-
       <Router>
         <Routes>
           <Route path="/signup" element={<Signup />} />
@@ -101,11 +141,13 @@ function App() {
             element={
               <>
                 {/* <Dropdown companies={companies} /> */}
+                <Text content="Company Stock Charts" />
+
                 {companyOption(
                   selectedCompany,
                   handleChange,
                   duration,
-                  setDuration
+                  handleDuration
                 )}
                 <DisplayCharts
                   data={data}
@@ -119,17 +161,33 @@ function App() {
             path="/stockExchange"
             element={
               <>
-                {/* <Dropdown companies={stockExchange} /> */}
+                <Text content="Stock Exchange Charts" />
+
                 {stockExchangeOption(
-                  selectedCompany,
-                  handleChange,
+                  selectedStockExchange,
+                  handleExchangeChange,
                   duration,
-                  setDuration
+                  handleDuration
                 )}
                 <DisplayCharts
                   data={data}
+                  company={selectedStockExchange}
+                  duration={duration}
+                />
+              </>
+            }
+          />
+          <Route
+            path="/TechnicalAnalysis"
+            element={
+              <>
+                <Text content="Technical Analysis" />
+                <TechnicalAnalysis
+                  data={data}
                   company={selectedCompany}
                   duration={duration}
+                  handleDuration={handleDuration}
+                  handleChange={handleChange}
                 />
               </>
             }
@@ -138,12 +196,13 @@ function App() {
             path="/"
             element={
               <>
+                <Text content="Glossary" />
                 <Feed />
-                <Modals />
               </>
             }
           />
         </Routes>
+        <Modals />
         <Footers />
       </Router>
     </>

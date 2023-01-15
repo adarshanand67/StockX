@@ -4,7 +4,11 @@ import React from "react";
 const NavigationBar = () => {
   return (
     <>
-      <Navbar fluid={true} rounded={true}>
+      <Navbar
+        fluid={true}
+        rounded={true}
+        style={{ backgroundColor: "#CCE4FF" }}
+      >
         <Navbar.Brand href="/">
           <img
             src="https://flowbite.com/docs/images/logo.svg"
@@ -30,11 +34,13 @@ const NavigationBar = () => {
         </div>
         <Navbar.Toggle />
         <Navbar.Collapse>
-          <Navbar.Link href="/" active={true}>
-            Home
-          </Navbar.Link>
+          <Navbar.Link href="/">Home</Navbar.Link>
           <Navbar.Link href="/company">Company</Navbar.Link>
           <Navbar.Link href="/stockExchange">Stock Exchange</Navbar.Link>
+          <Navbar.Link href="/TechnicalAnalysis">
+            Technical Analysis
+          </Navbar.Link>
+          {/* <Navbar.Link href="/Compare">Compare</Navbar.Link> */}
         </Navbar.Collapse>
       </Navbar>
     </>
