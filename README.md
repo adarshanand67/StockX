@@ -95,14 +95,6 @@ We hope you find this backend helpful in creating your own stock market and comp
 
 - And you are good to go, Happy Coding!
 
-## License
-
-- MIT
-
-## Feedback
-
-If you have any feedback, please reach out to us to @adarshanand67.
-
 ## API Reference
 
 <!-- {
@@ -116,18 +108,27 @@ If you have any feedback, please reach out to us to @adarshanand67.
   "/stocks/:stockTicker": "get stock of ticker"
 } -->
 
-"/" : This endpoint returns the documentation for the API.
+- "/" : This endpoint returns the documentation for the API.
 
-"/signup" : This endpoint is used for user registration. It allows a user to create an account on the platform.
+- "/signup" : This endpoint is used for user registration. It allows a user to create an account on the - platform.
 
-"/signin" : This endpoint is used for user login. It allows a user to sign in to the platform using their registered credentials.
+- "/signin" : This endpoint is used for user login. It allows a user to sign in to the platform using their - registered credentials.
 
-"/signout" : This endpoint is used for user logout. It allows a user to sign out from the platform.
+- "/signout" : This endpoint is used for user logout. It allows a user to sign out from the platform.
 
-"/users" : This endpoint is used to retrieve a list of all registered users on the platform.
+- "/users" : This endpoint is used to retrieve a list of all registered users on the platform.
 
-"/user/:userId" : This endpoint is used to retrieve, update, or delete a specific user on the platform.
+- "/user/:userId" : This endpoint is used to retrieve, update, or delete a specific user on the platform.
 
-"/stocks" : This endpoint is used to retrieve a list of all stocks on the platform.
+- "/stocks" : This endpoint is used to retrieve a list of all stocks on the platform.
 
-"/stocks/:stockTicker" : This endpoint is used to retrieve a specific stock by its ticker symbol on the platform.
+- "/stocks/:stockTicker" : This endpoint is used to retrieve a specific stock by its ticker symbol on the platform.
+
+
+## License
+
+- MIT
+
+## Feedback
+
+If you have any feedback, please reach out to us to @adarshanand67.
