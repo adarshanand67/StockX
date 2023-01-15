@@ -1,6 +1,12 @@
 import HighchartsReact from "highcharts-react-official";
 import more from "highcharts/highcharts-more";
 import Highcharts from "highcharts/highstock";
+import Indicators from "highcharts/indicators/indicators-all.js";
+import AnnotationsAdvanced from "highcharts/modules/annotations-advanced.js";
+import DragPanes from "highcharts/modules/drag-panes.js";
+import FullScreen from "highcharts/modules/full-screen.js";
+import PriceIndicator from "highcharts/modules/price-indicator.js";
+import StockTools from "highcharts/modules/stock-tools.js";
 import React from "react";
 import ashokley from "../assets/svg/ashokley.svg";
 import bse from "../assets/svg/bse.svg";
@@ -12,7 +18,14 @@ import tatasteel from "../assets/svg/tatasteel.svg";
 import "../styles/TechnicalAnalysis.module.css";
 import { parseUnixTime } from "../utils/parseUnix";
 import { companyOption } from "./companyOption";
-import { stockExchangeOption } from "./stockExchangeOption";
+
+// init the module
+Indicators(Highcharts);
+DragPanes(Highcharts);
+AnnotationsAdvanced(Highcharts);
+PriceIndicator(Highcharts);
+FullScreen(Highcharts);
+StockTools(Highcharts);
 
 const companyToSvgPath = (company) => {
   if (company === "RELIANCE") {
@@ -38,14 +51,14 @@ const companyToSvgPath = (company) => {
   }
 };
 
-const TechAnalysis = ({
+const TechnicalAnalysis = ({
   data,
   company,
   duration,
   handleDuration,
   handleChange,
 }) => {
-  // console.log(data);
+  console.log(data, company);
   const date_ohlc = data.map((item) => [
     parseUnixTime(item.Date),
     parseFloat(item.Open),
@@ -160,20 +173,21 @@ const TechAnalysis = ({
   };
 
   return (
-    <div className="w-5/6 m-auto">
-      <div className="my-10">
+    <>
+      <div className="flex flex-col justify-center w-5/6 m-auto my-5">
         {companyOption(company, handleChange, duration, handleDuration)}
+        {/* Title of company  */}
+        <div className="flex justify-center my-10">
+          <img src={path} alt="company" width="200px" />
+        </div>
+        <HighchartsReact
+          highcharts={Highcharts}
+          constructorType={"stockChart"}
+          options={options}
+        />
       </div>
-      <div className="text-3xl flex justify-center h-50 my-3">
-        <img src={path} alt="company" width={150} />
-      </div>
-      <HighchartsReact
-        highcharts={Highcharts}
-        constructorType={"stockChart"}
-        options={options}
-      />
-    </div>
+    </>
   );
 };
 
-export default TechAnalysis;
+export default TechnicalAnalysis;
