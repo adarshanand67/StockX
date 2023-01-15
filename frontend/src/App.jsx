@@ -19,8 +19,10 @@ import Signup from "./components/Signup";
 import Spinners from "./components/Spinners";
 import StockCharts from "./components/StockCharts";
 import { stockExchangeOption } from "./components/stockExchangeOption";
-import TechnicalAnalysis from "./components/TechnicalAnalysis";
-import TechAnalysis from "./components/TechnicalAnalysis";
+import {
+  default as TechAnalysis,
+  default as TechnicalAnalysis,
+} from "./components/TechnicalAnalysis";
 import Feed from "./container/Feed";
 import Footers from "./container/Footers";
 import NavigationBar from "./container/Nav";
@@ -34,6 +36,8 @@ function App() {
   const [selectedStockExchange, setSelectedStockExchange] = useState(
     stockExchange[0]
   );
+
+  const companyNames = companies.map((company) => company);
 
   const [duration, setDuration] = useState("3M");
   const toast = useToast();
@@ -107,7 +111,11 @@ function App() {
 
   useEffect(() => {
     const url = window.location.href;
-    if (url.includes("company") || url.includes("TechnicalAnalysis")) {
+    if (
+      url.includes("company") ||
+      url.includes("TechnicalAnalysis") ||
+      url.includes("Compare")
+    ) {
       fetchCompanyData(selectedCompany, duration);
     } else {
       fetchCompanyData(selectedStockExchange, duration);
@@ -191,7 +199,7 @@ function App() {
             path="/Compare"
             element={
               <>
-                <Compare />
+                <Compare data = {data} company = {selectedCompany} duration = {duration} handleDuration = {handleDuration} handleChange = {handleChange} />
               </>
             }
           />

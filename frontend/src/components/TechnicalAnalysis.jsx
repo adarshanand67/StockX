@@ -88,7 +88,7 @@ const TechnicalAnalysis = ({
       },
     ],
     subtitle: {
-      text: "All indicators",
+      // text: "All indicators",
     },
     accessibility: {
       series: {

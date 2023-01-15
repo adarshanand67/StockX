@@ -1,6 +1,10 @@
 import React from 'react'
 
-const Compare = () => {
+const Compare = ({data, company, duration, handleDuration, handleChange}) => {
+
+
+
+
   return (
     <div>Compare</div>
   )

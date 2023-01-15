@@ -17,7 +17,7 @@ const Feed = () => {
           description={
             "The price at which a stock begins trading on the stock market for a given trading session. It is the first price at which shares of a stock are traded on the market on a given trading day."
           }
-          LearnMoreURL={"/"}
+          LearnMoreURL={"https://www.investopedia.com/search?q=open+price"}
         />
         <FeedCard
           imgSrc={
@@ -27,7 +27,7 @@ const Feed = () => {
           description={
             "The price at which a stock closes trading on the stock market for a given trading session. It is the last price at which shares of a stock are traded on the market on a given trading day."
           }
-          LearnMoreURL={"/"}
+          LearnMoreURL={"https://www.investopedia.com/search?q=closing+price"}
         />
         <FeedCard
           imgSrc={
@@ -37,7 +37,7 @@ const Feed = () => {
           description={
             "The highest traded price of a stock during a trading session."
           }
-          LearnMoreURL={"/"}
+          LearnMoreURL={"https://www.investopedia.com/search?q=high+price"}
         />
         <FeedCard
           imgSrc={
@@ -47,7 +47,7 @@ const Feed = () => {
           description={
             "The lowest traded price of a stock during a trading session."
           }
-          LearnMoreURL={"/"}
+          LearnMoreURL={"https://www.investopedia.com/search?q=low+price"}
         />
 
         <FeedCard
@@ -58,7 +58,7 @@ const Feed = () => {
           description={
             "The number of shares of a stock that are traded during a trading session."
           }
-          LearnMoreURL={"/"}
+          LearnMoreURL={"https://www.investopedia.com/search?q=volume"}
         />
 
         <FeedCard
@@ -69,7 +69,7 @@ const Feed = () => {
           description={
             "The adjusted closing price is the closing price that has been adjusted to include any distributions and corporate actions that occurred at any time before the next day's open."
           }
-          LearnMoreURL={"/"}
+          LearnMoreURL={"https://www.investopedia.com/search?q=adj+close"}
         />
 
         <FeedCard
@@ -80,7 +80,7 @@ const Feed = () => {
           description={
             "The highest price at which a stock has traded in the previous 52 weeks."
           }
-          LearnMoreURL={"/"}
+          LearnMoreURL={"https://www.investopedia.com/search?q=52+week+high"}
         />
 
         <FeedCard
@@ -91,7 +91,7 @@ const Feed = () => {
           description={
             "The lowest price at which a stock has traded in the previous 52 weeks."
           }
-          LearnMoreURL={"/"}
+          LearnMoreURL={"https://www.investopedia.com/search?q=52+week+low"}
         />
 
         <FeedCard
@@ -102,8 +102,21 @@ const Feed = () => {
           description={
             "Volatility is a statistical measure of the dispersion of returns for a given security or market index. Volatility can either be measured by using the standard deviation or variance between returns from that same security or market index."
           }
-          LearnMoreURL={"/"}
+          LearnMoreURL={"https://www.investopedia.com/search?q=volatility"}
         />
+        <FeedCard
+          imgSrc={
+            "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+          }
+          title={"Technical Analysis"}
+          description={
+            "Technical analysis is a security analysis methodology for forecasting the direction of prices through the study of past market data, primarily price and volume."
+          }
+          LearnMoreURL={
+            "https://www.investopedia.com/search?q=technical+analysis"
+          }
+        />
+
       </div>
     </>
   );

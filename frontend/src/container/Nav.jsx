@@ -30,7 +30,7 @@ const NavigationBar = () => {
         </div>
         <Navbar.Toggle />
         <Navbar.Collapse>
-          <Navbar.Link href="/" active={true}>
+          <Navbar.Link href="/" >
             Home
           </Navbar.Link>
           <Navbar.Link href="/company">Company</Navbar.Link>
