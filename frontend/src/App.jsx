@@ -19,7 +19,7 @@ import Signup from "./components/Signup";
 import Spinners from "./components/Spinners";
 import StockCharts from "./components/StockCharts";
 import { stockExchangeOption } from "./components/stockExchangeOption";
-import TechnicalAnalysis from "./components/TechnicalAnalysis";
+import TechAnalysis from "./components/TechAnalysis";
 import Feed from "./container/Feed";
 import Footers from "./container/Footers";
 import NavigationBar from "./container/Nav";
@@ -176,7 +176,7 @@ function App() {
             path="/TechnicalAnalysis"
             element={
               <>
-                <TechnicalAnalysis
+                <TechAnalysis
                   data={data}
                   company={selectedCompany}
                   duration={duration}
@@ -190,13 +190,7 @@ function App() {
             path="/Compare"
             element={
               <>
-                <Compare
-                  data={data}
-                  company={selectedCompany}
-                  duration={duration}
-                  handleDuration={handleDuration}
-                  handleChange={handleChange}
-                />
+                <Compare />
               </>
             }
           />

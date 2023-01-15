@@ -1,12 +1,6 @@
 import HighchartsReact from "highcharts-react-official";
 import more from "highcharts/highcharts-more";
 import Highcharts from "highcharts/highstock";
-import Indicators from "highcharts/indicators/indicators-all.js";
-import AnnotationsAdvanced from "highcharts/modules/annotations-advanced.js";
-import DragPanes from "highcharts/modules/drag-panes.js";
-import FullScreen from "highcharts/modules/full-screen.js";
-import PriceIndicator from "highcharts/modules/price-indicator.js";
-import StockTools from "highcharts/modules/stock-tools.js";
 import React from "react";
 import ashokley from "../assets/svg/ashokley.svg";
 import bse from "../assets/svg/bse.svg";
@@ -18,14 +12,7 @@ import tatasteel from "../assets/svg/tatasteel.svg";
 import "../styles/TechnicalAnalysis.module.css";
 import { parseUnixTime } from "../utils/parseUnix";
 import { companyOption } from "./companyOption";
-
-// init the module
-Indicators(Highcharts);
-DragPanes(Highcharts);
-AnnotationsAdvanced(Highcharts);
-PriceIndicator(Highcharts);
-FullScreen(Highcharts);
-StockTools(Highcharts);
+import { stockExchangeOption } from "./stockExchangeOption";
 
 const companyToSvgPath = (company) => {
   if (company === "RELIANCE") {
@@ -51,14 +38,14 @@ const companyToSvgPath = (company) => {
   }
 };
 
-const TechnicalAnalysis = ({
+const TechAnalysis = ({
   data,
   company,
   duration,
   handleDuration,
   handleChange,
 }) => {
-  console.log(data, company);
+  // console.log(data);
   const date_ohlc = data.map((item) => [
     parseUnixTime(item.Date),
     parseFloat(item.Open),
@@ -66,14 +53,17 @@ const TechnicalAnalysis = ({
     parseFloat(item.Low),
     parseFloat(item.Close),
   ]);
+
+  const path = companyToSvgPath(company);
+
   const volume = data.map((item) => [
     parseUnixTime(item.Date),
     parseFloat(item.Volume),
   ]);
-
-  const path = companyToSvgPath(company);
-
   const options = {
+    chart: {
+      height: 600,
+    },
     yAxis: [
       {
         height: "100%",
@@ -84,60 +74,74 @@ const TechnicalAnalysis = ({
         offset: 0,
       },
     ],
+    subtitle: {
+      text: "All indicators",
+    },
+    accessibility: {
+      series: {
+        descriptionFormat: "{seriesDescription}.",
+      },
+      description:
+        "Use the dropdown menus above to display different indicator series on the chart.",
+      screenReaderSection: {
+        beforeChartFormat:
+          "<{headingTagName}>{chartTitle}</{headingTagName}><div>{typeDescription}</div><div>{chartSubtitle}</div><div>{chartLongdesc}</div>",
+      },
+    },
+    legend: {
+      enabled: true,
+    },
+    rangeSelector: {
+      selected: 2,
+    },
+    yAxis: [
+      {
+        height: "60%",
+      },
+      {
+        top: "60%",
+        height: "20%",
+      },
+      {
+        top: "80%",
+        height: "20%",
+      },
+    ],
+    plotOptions: {
+      series: {
+        showInLegend: true,
+        accessibility: {
+          exposeAsGroupOnly: true,
+        },
+      },
+    },
     series: [
       {
-        type: "ohlc",
+        type: "candlestick",
+        id: "company1",
+        name: `${company}`,
         data: date_ohlc,
-        yAxis: 0,
       },
       {
         type: "column",
+        id: "volume",
+        name: "Volume",
         data: volume,
         yAxis: 1,
       },
+      {
+        type: "pc",
+        id: "overlay",
+        linkedTo: "company1",
+        yAxis: 0,
+      },
+      {
+        type: "macd",
+        id: "oscillator",
+        linkedTo: "company1",
+        yAxis: 2,
+      },
     ],
-    chart: {
-      backgroundColor: "#f5f5f5",
-    },
-    xAxis: {
-      gridLineWidth: 1,
-      gridLineColor: "#e0e0e0",
-    },
-    plotOptions: {
-      ohlc: {
-        color: "#00ff00",
-        upColor: "#ff0000",
-        lineColor: "#000000",
-        lineWidth: 1,
-      },
-      column: {
-        color: "#1A58DF",
-        borderWidth: 1,
-      },
-    },
-    tooltip: {
-      split: true,
-      formatter: function () {
-        return (
-          Highcharts.dateFormat("%A, %b %e, %Y", this.x) +
-          "<br/>" +
-          "Open: " +
-          this.points[0].point.open.toFixed(2) +
-          "<br/>" +
-          "High: " +
-          this.points[0].point.high.toFixed(2) +
-          "<br/>" +
-          "Low: " +
-          this.points[0].point.low.toFixed(2) +
-          "<br/>" +
-          "Close: " +
-          this.points[0].point.close.toFixed(2) +
-          "<br/>" +
-          "Volume: " +
-          this.points[1].point.y.toFixed(2)
-        );
-      },
-    },
     rangeSelector: {
       selected: 1,
     },
@@ -156,21 +160,20 @@ const TechnicalAnalysis = ({
   };
 
   return (
-    <>
-      <div className="flex flex-col justify-center w-5/6 m-auto my-5">
+    <div className="w-5/6 m-auto">
+      <div className="my-10">
         {companyOption(company, handleChange, duration, handleDuration)}
-        {/* Title of company  */}
-        <div className="flex justify-center my-10">
-          <img src={path} alt="company" width="200px" />
-        </div>
-        <HighchartsReact
-          highcharts={Highcharts}
-          constructorType={"stockChart"}
-          options={options}
-        />
       </div>
-    </>
+      <div className="text-3xl flex justify-center h-50 my-3">
+        <img src={path} alt="company" width={150} />
+      </div>
+      <HighchartsReact
+        highcharts={Highcharts}
+        constructorType={"stockChart"}
+        options={options}
+      />
+    </div>
   );
 };
 
-export default TechnicalAnalysis;
+export default TechAnalysis;
