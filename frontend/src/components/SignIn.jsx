@@ -1,6 +1,6 @@
+import { useToast } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {useToast} from "@chakra-ui/react";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -35,11 +35,11 @@ const SignIn = () => {
             isClosable: true,
           });
           navigate("/"); // TODO: Redirect to dashboard
-
         } else {
           toast({
             title: "Error logging in.",
-            description: "We've encountered an error logging you in. Please try again.",
+            description:
+              "We've encountered an error logging you in. Please try again.",
             status: "error",
             duration: 9000,
             isClosable: true,
@@ -63,7 +63,9 @@ const SignIn = () => {
   return (
     <div className="bg-gray-200 min-h-screen flex items-center justify-center">
       <div className="w-full max-w-sm">
-        <h2 className="text-lg font-medium mb-4 text-center">Sign In</h2>
+        <div className="flex flex-col items-center justify-center m-5">
+          <h1 className="text-4xl font-bold text-blue-600">Sign In</h1>
+        </div>
         <form className="bg-white p-6 rounded-lg shadow-md">
           <div className="mb-4">
             <label className="block text-gray-700 font-medium mb-2">
@@ -89,12 +91,12 @@ const SignIn = () => {
           </div>
           <div className="flex items-center justify-center">
             <button
-              className="bg-indigo-500 text-white py-2 px-4 rounded-lg hover:bg-indigo-600"
+              className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600"
               onClick={handleSubmit}
             >
               Sign In
             </button>
-            {/* <a href="#" className="text-indigo-500 font-medium"
+            {/* <a href="#" className="text-blue-500 font-medium"
               // onClick={handleForgetPassword}
             >
               Forgot Password?
