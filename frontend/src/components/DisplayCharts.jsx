@@ -30,6 +30,12 @@ const dateFormater = (date) => {
   return `${monthName} ${year}`;
 };
 
+const parseDate = (date) => {
+  // Convert 2023-01-04T00:00:00.000Z to 2023-01-04 to be used in dateFormater
+  const dateArray = date.split("T");
+  return dateFormater(dateArray[0]);
+};
+
 const parseDuration = (duration) => {
   if (duration === "1D") {
     return 1;
@@ -77,6 +83,7 @@ const companyToSvgPath = (company) => {
 };
 
 const DisplayCharts = ({ data, company, duration }) => {
+  console.log(data)
   const RupeeSymbol = "\u20B9";
   const dateLabels = data.map((item) => dateFormater(item.Date));
   // console.log(dateLabels);
@@ -103,7 +110,9 @@ const DisplayCharts = ({ data, company, duration }) => {
     closePrices[closePrices.length - 1]
   ).toFixed(2);
   const FirstOpeningPrice = parseInt(openPrices[0]).toFixed(2);
-  const lastestDate = pureDates[pureDates.length - 1];
+  // const latestDate = parseDate(pureDates[pureDates.length - 1]);
+  const latestDate = (pureDates[pureDates.length - 1]);
+  console.log(latestDate);
 
   const priceChange = (lastClosingPrice - FirstOpeningPrice).toFixed(2);
 
@@ -224,7 +233,7 @@ const DisplayCharts = ({ data, company, duration }) => {
               >{` ${upOrDownArrow} ${priceChange} (${priceChangePercentage}%) `}</span>
               <br />
               <span className="text-gray-400 font-thin text-lg ">
-                Last Updated : {lastestDate}
+                Last Updated : {latestDate}
               </span>
             </h1>
           </div>
