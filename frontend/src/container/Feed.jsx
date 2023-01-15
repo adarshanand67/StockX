@@ -4,10 +4,6 @@ import FeedCard from "./FeedCard";
 const Feed = () => {
   return (
     <>
-      {/* create heading glossary */}
-      <div className="flex flex-col items-center justify-center">
-        <h1 className="text-4xl font-bold text-blue-600">Glossary</h1>
-      </div>
       <div className="grid grid-cols-3 gap-10 m-10">
         <FeedCard
           imgSrc={

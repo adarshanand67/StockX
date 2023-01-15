@@ -23,6 +23,7 @@ import {
   default as TechAnalysis,
   default as TechnicalAnalysis,
 } from "./components/TechnicalAnalysis";
+import Text from "./components/Text";
 import Feed from "./container/Feed";
 import Footers from "./container/Footers";
 import NavigationBar from "./container/Nav";
@@ -140,6 +141,8 @@ function App() {
             element={
               <>
                 {/* <Dropdown companies={companies} /> */}
+                <Text content="Company Stock Charts" />
+
                 {companyOption(
                   selectedCompany,
                   handleChange,
@@ -158,6 +161,8 @@ function App() {
             path="/stockExchange"
             element={
               <>
+                <Text content="Stock Exchange Charts" />
+
                 {stockExchangeOption(
                   selectedStockExchange,
                   handleExchangeChange,
@@ -173,18 +178,10 @@ function App() {
             }
           />
           <Route
-            path="/StockCharts"
-            element={
-              <>
-                <StockCharts data={data} company={selectedCompany} />
-                {/* <TechnicalAnalysis /> */}
-              </>
-            }
-          />
-          <Route
             path="/TechnicalAnalysis"
             element={
               <>
+                <Text content="Technical Analysis" />
                 <TechnicalAnalysis
                   data={data}
                   company={selectedCompany}
@@ -199,6 +196,7 @@ function App() {
             path="/"
             element={
               <>
+                <Text content="Glossary" />
                 <Feed />
               </>
             }
