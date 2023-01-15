@@ -1,6 +1,12 @@
 import { useToast } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Link,
+  Route,
+  Routes,
+  useParams,
+} from "react-router-dom";
 import reactLogo from "./assets/react.svg";
 import { companyOption } from "./components/companyOption";
 import Data from "./components/Data";
@@ -14,12 +20,17 @@ import { stockExchangeOption } from "./components/stockExchangeOption";
 import Feed from "./container/Feed";
 import Footers from "./container/Footers";
 import NavigationBar from "./container/Nav";
-import { companies } from "./utils/companies";
+import { companies, stockExchange } from "./utils/companies";
 
 function App() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-  let [selectedCompany, setSelectedCompany] = useState(companies[0]);
+
+  const [selectedCompany, setSelectedCompany] = useState(companies[0]);
+  const [selectedStockExchange, setSelectedStockExchange] = useState(
+    stockExchange[0]
+  );
+
   const [duration, setDuration] = useState("3M");
   const toast = useToast();
 
@@ -27,6 +38,16 @@ function App() {
     setSelectedCompany(e.target.value);
     toast({
       title: `Selected Company: ${e.target.value}`,
+      status: "info",
+      duration: 2000,
+      isClosable: true,
+    });
+  };
+
+  const handleExchangeChange = (e) => {
+    setSelectedStockExchange(e.target.value);
+    toast({
+      title: `Selected Stock Exchange: ${e.target.value}`,
       status: "info",
       duration: 2000,
       isClosable: true,
@@ -81,8 +102,13 @@ function App() {
   // console.log("selectedCompany: ", selectedCompany, "duration: ", duration);
 
   useEffect(() => {
-    fetchCompanyData(selectedCompany, duration); //fetch data from whenever company changes
-  }, [selectedCompany, duration]);
+    const url = window.location.href;
+    if (url.includes("company")) {
+      fetchCompanyData(selectedCompany, duration);
+    } else {
+      fetchCompanyData(selectedStockExchange, duration);
+    }
+  }, [selectedCompany, duration, selectedStockExchange]);
 
   // console.log(data);
 
@@ -120,16 +146,15 @@ function App() {
             path="/stockExchange"
             element={
               <>
-                {/* <Dropdown companies={stockExchange} /> */}
                 {stockExchangeOption(
-                  selectedCompany,
-                  handleChange,
+                  selectedStockExchange,
+                  handleExchangeChange,
                   duration,
                   handleDuration
                 )}
                 <DisplayCharts
                   data={data}
-                  company={selectedCompany}
+                  company={selectedStockExchange}
                   duration={duration}
                 />
               </>
