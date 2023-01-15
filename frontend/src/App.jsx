@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import reactLogo from "./assets/react.svg";
 import { companyOption } from "./components/companyOption";
+import Compare from "./components/Compare";
 import Data from "./components/Data";
 import DisplayCharts from "./components/DisplayCharts";
 import Dropdown from "./components/Dropdown";
@@ -172,13 +173,33 @@ function App() {
             }
           />
           <Route
-          path="/TechnicalAnalysis"
-          element={
-            <>
-              <TechnicalAnalysis data={data} company={selectedCompany} duration={duration} handleDuration={handleDuration} handleChange={handleChange} />
-            </>
-          }
-        />
+            path="/TechnicalAnalysis"
+            element={
+              <>
+                <TechnicalAnalysis
+                  data={data}
+                  company={selectedCompany}
+                  duration={duration}
+                  handleDuration={handleDuration}
+                  handleChange={handleChange}
+                />
+              </>
+            }
+          />
+          <Route
+            path="/Compare"
+            element={
+              <>
+                <Compare
+                  data={data}
+                  company={selectedCompany}
+                  duration={duration}
+                  handleDuration={handleDuration}
+                  handleChange={handleChange}
+                />
+              </>
+            }
+          />
           <Route
             path="/"
             element={
