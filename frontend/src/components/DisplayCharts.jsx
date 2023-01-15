@@ -21,6 +21,28 @@ const dateFormater = (date) => {
   return `${monthName} ${year}`;
 };
 
+const parseDuration = (duration) => {
+  if (duration === "1D") {
+    return 1;
+  } else if (duration === "1W") {
+    return 7;
+  } else if (duration === "1M") {
+    return 30;
+  } else if (duration === "3M") {
+    return 90;
+  } else if (duration === "6M") {
+    return 180;
+  } else if (duration === "1Y") {
+    return 365;
+  } else if (duration === "2Y") {
+    return 730;
+  } else if (duration === "5Y") {
+    return 1825;
+  } else {
+    return 365;
+  }
+};
+
 const DisplayCharts = ({ data, company, duration }) => {
   const RupeeSymbol = "\u20B9";
   const dateLabels = data.map((item) => dateFormater(item.Date));
@@ -32,13 +54,20 @@ const DisplayCharts = ({ data, company, duration }) => {
   const lowPrices = data.map((item) => item.Low);
   const volume = data.map((item) => item.Volume);
   const adjClose = data.map((item) => item["Adj Close"]);
+  // volatility high - low) / close.
+  const volatility = data.map((item) => {
+    const high = item.High;
+    const low = item.Low;
+    const close = item.Close;
+    return ((high - low) / close).toFixed(2);
+  });
 
   const WeekHigh52 = Math.max(...highPrices).toFixed(2);
   const WeekLow52 = Math.min(...lowPrices).toFixed(2);
   // console.log(WeekHigh52, WeekLow52);
 
-  const lastClosingPrice = closePrices[closePrices.length - 1];
-  const FirstOpeningPrice = openPrices[0];
+  const lastClosingPrice = parseInt(closePrices[closePrices.length - 1]).toFixed(2);
+  const FirstOpeningPrice = parseInt(openPrices[0]).toFixed(2);
   const lastestDate = pureDates[pureDates.length - 1];
 
   const priceChange = (lastClosingPrice - FirstOpeningPrice).toFixed(2);
@@ -49,6 +78,24 @@ const DisplayCharts = ({ data, company, duration }) => {
   ).toFixed(2);
   const greenOrRed = priceChange > 0 ? "green" : "red";
   const upOrDownArrow = priceChange > 0 ? "▲" : "▼";
+
+  // const movingAverage = (data, duration) => {
+  //   // Last duration moving average
+  //   const movingAverage = [];
+  //   for (let i = 0; i < data.length - duration; i++) {
+  //     let sum = 0;
+  //     for (let j = 0; j < duration; j++) {
+  //       sum += data[i + j];
+  //     }
+  //     movingAverage.push((sum / duration).toFixed(2));
+  //   }
+  //   return movingAverage;
+  // };
+  // // Get moving average for duration days
+  // // console.log(duration);
+  // const durationToNumber = parseDuration(duration);
+  // const movingAverageDuration = movingAverage(closePrices, durationToNumber);
+  // console.log(movingAverageDuration);
 
   const Open_vs_Date = {
     labels: dateLabels,
@@ -128,6 +175,19 @@ const DisplayCharts = ({ data, company, duration }) => {
     ],
   };
 
+  const Volatility_vs_Date = {
+    labels: dateLabels,
+    datasets: [
+      {
+        label: "Volatility vs Date",
+        data: volatility,
+        backgroundColor: "#CCE4FF",
+        borderColor: "#1A5BE3",
+        borderWidth: 1,
+      },
+    ],
+  };
+
   return (
     <>
       <div className="w-5/6 mt-5 m-auto p-5 border border-gray-400 rounded-lg">
@@ -191,15 +251,18 @@ const DisplayCharts = ({ data, company, duration }) => {
             <Bar data={Low_vs_Date} options={options} />
           </div>
           <div className="flex flex-col items-center justify-center">
+            <h1 className="text-2xl font-bold">Adj Close vs Date</h1>
+            <Bar data={AdjClose_vs_Date} options={options} />
+          </div>
+          <div className="flex flex-col items-center justify-center">
             <h1 className="text-2xl font-bold">Volume vs Date</h1>
             <Bar data={Volume_vs_Date} options={options} />
           </div>
           <div className="flex flex-col items-center justify-center">
-            <h1 className="text-2xl font-bold">Adj Close vs Date</h1>
-            <Bar data={AdjClose_vs_Date} options={options} />
+            <h1 className="text-2xl font-bold">Volatility vs Date</h1>
+            <Bar data={Volatility_vs_Date} options={options} />
           </div>
         </div>
-        {/* Create a 3X2 grid */}
       </div>
     </>
   );

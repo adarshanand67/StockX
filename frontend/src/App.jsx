@@ -33,6 +33,16 @@ function App() {
     });
   };
 
+  const handleDuration = (e) => {
+    setDuration(e.target.value);
+    toast({
+      title: `Selected Duration: ${e.target.value}`,
+      status: "info",
+      duration: 2000,
+      isClosable: true,
+    });
+  };
+
   const fetchCompanyData = async (company, duration) => {
     // TODO - Fetch Data from API
     const URL = `src/data/json/${company}.json`;
@@ -80,15 +90,6 @@ function App() {
     <>
       <NavigationBar />
       {/* Set routes to /signup */}
-      <div className="">
-        <h1
-          className="text-2xl text-gray-700 m-2 font-semibold"
-          style={{ textAlign: "center" }}
-        >
-          Choose company and duration
-        </h1>
-      </div>
-
       <Router>
         <Routes>
           <Route path="/signup" element={<Signup />} />
@@ -105,7 +106,7 @@ function App() {
                   selectedCompany,
                   handleChange,
                   duration,
-                  setDuration
+                  handleDuration
                 )}
                 <DisplayCharts
                   data={data}
@@ -124,7 +125,7 @@ function App() {
                   selectedCompany,
                   handleChange,
                   duration,
-                  setDuration
+                  handleDuration
                 )}
                 <DisplayCharts
                   data={data}
