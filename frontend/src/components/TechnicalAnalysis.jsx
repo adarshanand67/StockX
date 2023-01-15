@@ -66,14 +66,17 @@ const TechnicalAnalysis = ({
     parseFloat(item.Low),
     parseFloat(item.Close),
   ]);
+
+  const path = companyToSvgPath(company);
+
   const volume = data.map((item) => [
     parseUnixTime(item.Date),
     parseFloat(item.Volume),
   ]);
-
-  const path = companyToSvgPath(company);
-
   const options = {
+    chart: {
+      height: 600,
+    },
     yAxis: [
       {
         height: "100%",
@@ -84,60 +87,74 @@ const TechnicalAnalysis = ({
         offset: 0,
       },
     ],
+    subtitle: {
+      text: "All indicators",
+    },
+    accessibility: {
+      series: {
+        descriptionFormat: "{seriesDescription}.",
+      },
+      description:
+        "Use the dropdown menus above to display different indicator series on the chart.",
+      screenReaderSection: {
+        beforeChartFormat:
+          "<{headingTagName}>{chartTitle}</{headingTagName}><div>{typeDescription}</div><div>{chartSubtitle}</div><div>{chartLongdesc}</div>",
+      },
+    },
+    legend: {
+      enabled: true,
+    },
+    rangeSelector: {
+      selected: 2,
+    },
+    yAxis: [
+      {
+        height: "60%",
+      },
+      {
+        top: "60%",
+        height: "20%",
+      },
+      {
+        top: "80%",
+        height: "20%",
+      },
+    ],
+    plotOptions: {
+      series: {
+        showInLegend: true,
+        accessibility: {
+          exposeAsGroupOnly: true,
+        },
+      },
+    },
     series: [
       {
-        type: "ohlc",
+        type: "candlestick",
+        id: "company1",
+        name: `${company}`,
         data: date_ohlc,
-        yAxis: 0,
       },
       {
         type: "column",
+        id: "volume",
+        name: "Volume",
         data: volume,
         yAxis: 1,
       },
+      {
+        type: "pc",
+        id: "overlay",
+        linkedTo: "company1",
+        yAxis: 0,
+      },
+      {
+        type: "macd",
+        id: "oscillator",
+        linkedTo: "company1",
+        yAxis: 2,
+      },
     ],
-    chart: {
-      backgroundColor: "#f5f5f5",
-    },
-    xAxis: {
-      gridLineWidth: 1,
-      gridLineColor: "#e0e0e0",
-    },
-    plotOptions: {
-      ohlc: {
-        color: "#00ff00",
-        upColor: "#ff0000",
-        lineColor: "#000000",
-        lineWidth: 1,
-      },
-      column: {
-        color: "#1A58DF",
-        borderWidth: 1,
-      },
-    },
-    tooltip: {
-      split: true,
-      formatter: function () {
-        return (
-          Highcharts.dateFormat("%A, %b %e, %Y", this.x) +
-          "<br/>" +
-          "Open: " +
-          this.points[0].point.open.toFixed(2) +
-          "<br/>" +
-          "High: " +
-          this.points[0].point.high.toFixed(2) +
-          "<br/>" +
-          "Low: " +
-          this.points[0].point.low.toFixed(2) +
-          "<br/>" +
-          "Close: " +
-          this.points[0].point.close.toFixed(2) +
-          "<br/>" +
-          "Volume: " +
-          this.points[1].point.y.toFixed(2)
-        );
-      },
-    },
     rangeSelector: {
       selected: 1,
     },
