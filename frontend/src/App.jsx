@@ -30,6 +30,8 @@ import Footers from "./container/Footers";
 import NavigationBar from "./container/Nav";
 import { companies, stockExchange } from "./utils/companies";
 
+const APP_URL = "https://stockx-flipr.vercel.app/";
+
 function App() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
