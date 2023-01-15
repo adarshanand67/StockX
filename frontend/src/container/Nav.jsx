@@ -35,6 +35,8 @@ const NavigationBar = () => {
           </Navbar.Link>
           <Navbar.Link href="/company">Company</Navbar.Link>
           <Navbar.Link href="/stockExchange">Stock Exchange</Navbar.Link>
+          <Navbar.Link href="/StockCharts">Charts</Navbar.Link>
+          <Navbar.Link href="/TechnicalAnalysis">Technical Analysis</Navbar.Link>
         </Navbar.Collapse>
       </Navbar>
     </>

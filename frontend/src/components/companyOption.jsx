@@ -36,7 +36,6 @@ export function companyOption(
           <option value="6M">6 Months</option>
           <option value="1Y">1 Year</option>
           <option value="2Y">2 Years</option>
-          <option value="5Y">5 Years</option>
         </select>
       </div>
     </div>

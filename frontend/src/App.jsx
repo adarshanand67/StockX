@@ -16,7 +16,9 @@ import Modals from "./components/Modals";
 import SignIn from "./components/SignIn";
 import Signup from "./components/Signup";
 import Spinners from "./components/Spinners";
+import StockCharts from "./components/StockCharts";
 import { stockExchangeOption } from "./components/stockExchangeOption";
+import TechnicalAnalysis from "./components/TechnicalAnalysis";
 import Feed from "./container/Feed";
 import Footers from "./container/Footers";
 import NavigationBar from "./container/Nav";
@@ -103,7 +105,7 @@ function App() {
 
   useEffect(() => {
     const url = window.location.href;
-    if (url.includes("company")) {
+    if (url.includes("company") || url.includes("TechnicalAnalysis")) {
       fetchCompanyData(selectedCompany, duration);
     } else {
       fetchCompanyData(selectedStockExchange, duration);
@@ -160,6 +162,23 @@ function App() {
               </>
             }
           />
+          <Route
+            path="/StockCharts"
+            element={
+              <>
+                <StockCharts data={data} company={selectedCompany} />
+                {/* <TechnicalAnalysis /> */}
+              </>
+            }
+          />
+          <Route
+          path="/TechnicalAnalysis"
+          element={
+            <>
+              <TechnicalAnalysis data={data} company={selectedCompany} duration={duration} handleDuration={handleDuration} handleChange={handleChange} />
+            </>
+          }
+        />
           <Route
             path="/"
             element={
