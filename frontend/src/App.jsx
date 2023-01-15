@@ -78,13 +78,13 @@ function App() {
     setData(data);
     setLoading(false);
   };
-  console.log("selectedCompany: ", selectedCompany, "duration: ", duration);
+  // console.log("selectedCompany: ", selectedCompany, "duration: ", duration);
 
   useEffect(() => {
     fetchCompanyData(selectedCompany, duration); //fetch data from whenever company changes
   }, [selectedCompany, duration]);
 
-  console.log(data);
+  // console.log(data);
 
   return (
     <>

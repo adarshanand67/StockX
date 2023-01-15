@@ -2,6 +2,16 @@ import axios from "axios";
 import Chart from "chart.js/auto";
 import React from "react";
 import { Bar, Bubble, Doughnut, Line, Scatter } from "react-chartjs-2";
+// import svg
+import { ReactSVG } from "react-svg";
+import { ashokley} from '../logos/ashokley'
+import {bse} from '../logos/bse'
+import {cipla} from '../logos/cipla'
+import {eicher} from '../logos/eicher'
+import {nse} from '../logos/nse'
+import {reliance} from '../logos/reliance'
+import {tatasteel} from '../logos/tatasteel'
+
 
 const url = "https://localhost:3000";
 
@@ -43,6 +53,12 @@ const parseDuration = (duration) => {
   }
 };
 
+const companyToSvgPath = (company) => {
+  if (company === "RELIANCE") {
+    return "../assets/svg/reliance.svg";
+  }
+};
+
 const DisplayCharts = ({ data, company, duration }) => {
   const RupeeSymbol = "\u20B9";
   const dateLabels = data.map((item) => dateFormater(item.Date));
@@ -66,7 +82,9 @@ const DisplayCharts = ({ data, company, duration }) => {
   const WeekLow52 = Math.min(...lowPrices).toFixed(2);
   // console.log(WeekHigh52, WeekLow52);
 
-  const lastClosingPrice = parseInt(closePrices[closePrices.length - 1]).toFixed(2);
+  const lastClosingPrice = parseInt(
+    closePrices[closePrices.length - 1]
+  ).toFixed(2);
   const FirstOpeningPrice = parseInt(openPrices[0]).toFixed(2);
   const lastestDate = pureDates[pureDates.length - 1];
 
@@ -79,23 +97,7 @@ const DisplayCharts = ({ data, company, duration }) => {
   const greenOrRed = priceChange > 0 ? "green" : "red";
   const upOrDownArrow = priceChange > 0 ? "▲" : "▼";
 
-  // const movingAverage = (data, duration) => {
-  //   // Last duration moving average
-  //   const movingAverage = [];
-  //   for (let i = 0; i < data.length - duration; i++) {
-  //     let sum = 0;
-  //     for (let j = 0; j < duration; j++) {
-  //       sum += data[i + j];
-  //     }
-  //     movingAverage.push((sum / duration).toFixed(2));
-  //   }
-  //   return movingAverage;
-  // };
-  // // Get moving average for duration days
-  // // console.log(duration);
-  // const durationToNumber = parseDuration(duration);
-  // const movingAverageDuration = movingAverage(closePrices, durationToNumber);
-  // console.log(movingAverageDuration);
+  const path = companyToSvgPath(company);
 
   const Open_vs_Date = {
     labels: dateLabels,
@@ -187,6 +189,7 @@ const DisplayCharts = ({ data, company, duration }) => {
       },
     ],
   };
+  // console.log(path)
 
   return (
     <>
@@ -195,6 +198,10 @@ const DisplayCharts = ({ data, company, duration }) => {
         <div className="grid grid-rows-2 grid-cols-2 m-5 rounded-lg">
           {/* 1 */}
           <div>
+            <h1>
+              {/* <ReactSVG src={path} width = "100px"/> */}
+              {ashokley}
+            </h1>
             <h1 className="text-3xl font-bold text-gray-500 mx-5 py-2">
               {company}{" "}
               <span
