@@ -4,14 +4,13 @@ import React from "react";
 import { Bar, Bubble, Doughnut, Line, Scatter } from "react-chartjs-2";
 // import svg
 import { ReactSVG } from "react-svg";
-import { ashokley} from '../logos/ashokley'
-import {bse} from '../logos/bse'
-import {cipla} from '../logos/cipla'
-import {eicher} from '../logos/eicher'
-import {nse} from '../logos/nse'
-import {reliance} from '../logos/reliance'
-import {tatasteel} from '../logos/tatasteel'
-
+import ashokley from "../assets/svg/ashokley.svg";
+import bse from "../assets/svg/bse.svg";
+import cipla from "../assets/svg/cipla.svg";
+import eicher from "../assets/svg/eicher.svg";
+import nse from "../assets/svg/nse.svg";
+import reliance from "../assets/svg/reliance.svg";
+import tatasteel from "../assets/svg/tatasteel.svg";
 
 const url = "https://localhost:3000";
 
@@ -55,7 +54,25 @@ const parseDuration = (duration) => {
 
 const companyToSvgPath = (company) => {
   if (company === "RELIANCE") {
-    return "../assets/svg/reliance.svg";
+    return reliance;
+  }
+  if (company === "ASHOKLEY") {
+    return ashokley;
+  }
+  if (company === "CIPLA") {
+    return cipla;
+  }
+  if (company === "EICHERMOT") {
+    return eicher;
+  }
+  if (company === "TATASTEEL") {
+    return tatasteel;
+  }
+  if (company === "BSE") {
+    return bse;
+  }
+  if (company === "NSE") {
+    return nse;
   }
 };
 
@@ -198,10 +215,8 @@ const DisplayCharts = ({ data, company, duration }) => {
         <div className="grid grid-rows-2 grid-cols-2 m-5 rounded-lg">
           {/* 1 */}
           <div>
-            <h1>
-              {/* <ReactSVG src={path} width = "100px"/> */}
-              {ashokley}
-            </h1>
+            {/* <ReactSVG src={path} width = "100px"/> */}
+            {/* {ashokley} */}
             <h1 className="text-3xl font-bold text-gray-500 mx-5 py-2">
               {company}{" "}
               <span
@@ -214,7 +229,9 @@ const DisplayCharts = ({ data, company, duration }) => {
             </h1>
           </div>
           {/* 2 */}
-          <div></div>
+          <div className="flex justify-end">
+            <img src={path} alt="ashokley" width="200px" />
+          </div>
           {/* 3- 52 week data */}
           <div className="flex gap-5 items-center justify-left mt-5 mx-5">
             <div className="">
@@ -227,7 +244,7 @@ const DisplayCharts = ({ data, company, duration }) => {
             </div>
           </div>
           {/* 4-  Last closeing + first FirstOpeningPrice*/}
-          <div className="flex gap-5 items-center justify-left mt-5 mx-5">
+          <div className="flex gap-5 items-center justify-end mt-5 mx-5">
             <div className="">
               <h1 className=" font-bold bg-green-300">Last Closing Price</h1>
               <h1 className=" text-center">{RupeeSymbol + lastClosingPrice}</h1>
