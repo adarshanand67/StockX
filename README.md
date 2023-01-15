@@ -22,27 +22,27 @@ dotenv: A zero-dependency module that loads environment variables from a .env fi
 
 ### Frontend -
 
-React.js: React.js is an open-source JavaScript library for building user interfaces. It is used for building the UI of the project and managing the state of the application.
+- React.js: React.js is an open-source JavaScript library for building user interfaces. It is used for - building the UI of the project and managing the state of the application.
 
-Vite: Vite is a lightweight development server that serves the project in the browser and hot-reloads changes as you edit files.
+- Vite: Vite is a lightweight development server that serves the project in the browser and hot-reloads - changes as you edit files.
 
-Chakra UI: Chakra UI is a simple, modular, and accessible component library that gives you building blocks for your design system.
+- Chakra UI: Chakra UI is a simple, modular, and accessible component library that gives you building blocks for your design system.
 
-Emotion: Emotion is a library for styling components using the css-in-js approach.
+- Emotion: Emotion is a library for styling components using the css-in-js approach.
 
-Axios: Axios is a promise-based HTTP client for the browser and Node.js. It is used for making HTTP requests to the backend API.
+- Axios: Axios is a promise-based HTTP client for the browser and Node.js. It is used for making HTTP requests - to the backend API.
 
-Bootstrap: Bootstrap is an open-source CSS framework that provides a set of pre-designed UI components and responsive grid system.
+- Bootstrap: Bootstrap is an open-source CSS framework that provides a set of pre-designed UI components and responsive grid system.
 
-Chart.js: Chart.js is an open-source JavaScript library for creating charts. It is used for creating various types of charts in the project.
+- Chart.js: Chart.js is an open-source JavaScript library for creating charts. It is used for creating various - types of charts in the project.
 
-Highcharts: Highcharts is a JavaScript library used for creating interactive charts.
+- Highcharts: Highcharts is a JavaScript library used for creating interactive charts.
 
-React-router-dom: React-router-dom is a library used for client-side routing in React applications.
+- React-router-dom: React-router-dom is a library used for client-side routing in React applications.
 
-React-icons : A library used to include svg icons
+- React-icons : A library used to include svg icons
 
-PostCSS: PostCSS is a tool for transforming CSS with JavaScript. It is used in conjunction with Autoprefixer and Tailwind CSS to ensure browser compatibility
+- PostCSS: PostCSS is a tool for transforming CSS with JavaScript. It is used in conjunction with Autoprefixer and Tailwind CSS to ensure browser compatibility
 
 ## Stock Market & Companies - Backend
 
@@ -59,10 +59,15 @@ The project also uses `fast-csv` to handle CSV files, dotenv for loading environ
 
 ## API's
 
-Create an API for the stock market index (NSE & BSE)/(Nifty/Sensex)
-Create an API for the companies where a user can extract data of the respective companies (Reliance, Ashok Leyland, Cipla, Tata Steel, Eicher Motors)
-Create an API for user registration and login.
-The project also includes an API for user registration and login, as well as an API for the stock market index (NSE & BSE) and an API for the companies where users can extract data of the respective companies.
+- Create an API for the stock market index (NSE & BSE)/(Nifty/Sensex)
+
+- Create an API for the companies where a user can extract data of the respective companies (Reliance, Ashok
+- Leyland, Cipla, Tata Steel, Eicher Motors)
+
+- Create an API for user registration and login.
+
+- The project also includes an API for user registration and login, as well as an API for the stock market
+- index (NSE & BSE) and an API for the companies where users can extract data of the respective companies.
 
 ## Deployment
 
