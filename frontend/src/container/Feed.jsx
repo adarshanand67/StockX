@@ -65,7 +65,7 @@ const Feed = () => {
           description={
             "The adjusted closing price is the closing price that has been adjusted to include any distributions and corporate actions that occurred at any time before the next day's open."
           }
-          LearnMoreURL={"https://www.investopedia.com/search?q=adj+close"}
+          LearnMoreURL={"https://www.investopedia.com/search?q=adjusted+close"}
         />
 
         <FeedCard

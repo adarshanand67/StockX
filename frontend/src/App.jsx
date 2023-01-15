@@ -8,6 +8,7 @@ import {
   useParams,
 } from "react-router-dom";
 import reactLogo from "./assets/react.svg";
+import About from "./components/About";
 import { companyOption } from "./components/companyOption";
 import Compare from "./components/Compare";
 import Data from "./components/Data";
@@ -192,6 +193,16 @@ function App() {
               </>
             }
           />
+          <Route
+            path="/About"
+            element={
+              <>
+                <Text content="About Us" />
+                <About />
+              </>
+            }
+          />
+
           <Route
             path="/"
             element={

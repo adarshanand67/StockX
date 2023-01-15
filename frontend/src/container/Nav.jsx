@@ -40,7 +40,7 @@ const NavigationBar = () => {
           <Navbar.Link href="/TechnicalAnalysis">
             Technical Analysis
           </Navbar.Link>
-          {/* <Navbar.Link href="/Compare">Compare</Navbar.Link> */}
+          <Navbar.Link href="/About">About</Navbar.Link>
         </Navbar.Collapse>
       </Navbar>
     </>
