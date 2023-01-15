@@ -20,7 +20,12 @@ const FeedCard = ({ imgSrc, title, description, LearnMoreURL }) => {
         </p>
         <div className="flex justify-center">
           {/* open in new tab */}
-          <Button href={LearnMoreURL} className="mt-4 w-2/3">
+          <Button
+            className="mt-4 w-2/3"
+            onClick={() => {
+              window.open(LearnMoreURL, "_blank");
+            }}
+          >
             Learn More
             <HiOutlineArrowRight className="ml-2 h-5 w-5" />
           </Button>
