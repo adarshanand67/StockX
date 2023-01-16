@@ -1,4 +1,5 @@
-![logo (1)](https://user-images.githubusercontent.com/73928744/212635984-aae9a7eb-7887-4f7b-bbdb-4f98a04328c6.svg) 
+![logo (1)](https://user-images.githubusercontent.com/73928744/212635984-aae9a7eb-7887-4f7b-bbdb-4f98a04328c6.svg)
+
 <h1> StockX </h1>
 
 [![GitHub contributors](https://img.shields.io/github/contributors/adarshanand67/Flipr)](https://github.com/adarshanand67/Flipr/contributors)
@@ -8,6 +9,22 @@
 [![GitHub license](https://img.shields.io/github/license/adarshanand67/Flipr)](https://github.com/adarshanand67/Flipr/blob/master/LICENSE)
 <img src="https://img.shields.io/github/languages/top/adarshanand67/Flipr">
 <img src="https://img.shields.io/github/watchers/adarshanand67/Flipr" />
+
+## Storyline And Thought Process
+
+As a financial enthusiast and software developer, I was determined to create a platform that would make it easy for people to access and understand the stock market. So, I decided to create StockX, a stock market website that would provide real-time stock data, market analysis, and educational resources for new investors.
+
+But, as with any ambitious project, I faced many obstacles and hardships along the way. First and foremost, building StockX required an immense amount of research. I had to familiarize myself with various technologies that would be suitable for the project, such as Node.js for the backend, React.js for the frontend, and MongoDB as the database. I also had to navigate the complexities of stock market data and find a way to make it accessible to a wide range of users.
+
+To bring my vision to life, I began by researching various technologies that would be suitable for the project. I decided to use Node.js as the backend language, Express as the web application framework, MongoDB as the database, and JWT (JSON Web Token) for authentication and authorization. I also used middleware packages such as body-parser, cookie-parser, cors, dotenv, express-jwt, express-validator, fast-csv, jsonwebtoken, mongoose, morgan, nodemon, and others to handle various functionalities in the application.
+
+For the frontend, I chose to use React.js for building the UI and managing the state of the application. I also used Vite as the development server, Chakra UI as the component library, Emotion for styling, Axios for making HTTP requests, Bootstrap for the responsive grid system, and Chart.js for creating charts.
+
+As the development of StockX progressed, I encountered other challenges such as bugs and compatibility issues. These problems had to be fixed, but it took a lot of time and effort to do so. There were moments when I felt like giving up but my vision for the project kept me going.
+
+Despite the obstacles and hardships, I persisted and StockX was finally ready to be launched. The website was designed to be user-friendly and easy to navigate, with a clean and modern interface. Users could access real-time stock data, market analysis, and educational resources with just a few clicks.
+
+It was a humbling experience to see how my vision had become a reality, and it was all worth it. I continue to work on StockX, adding new features and improving the user experience, and I am excited to see where this project will take me in the future.
 
 ## Tech Stack
 
@@ -21,7 +38,7 @@
 
 `JWT (JSON Web Token)`: JWT is a compact and self-contained way for securely transmitting information between parties. It is used for authentication and authorization in the application.
 
-`Middleware Packages `: Middleware packages like body-parser, cookie-parser, cors, dotenv, express-jwt, express-validator, fast-csv, jsonwebtoken, mongoose, morgan, nodemon etc are used to handle various functionalities like parsing the request body, handling cookies, handling cross-origin resource sharing, loading environment variables, validating user inputs, handling CSV files, creating and verifying JSON web tokens, connecting to MongoDB, handling HTTP request logging, and automatically restarting the server when code changes.
+`Middleware Packages`: Middleware packages like body-parser, cookie-parser, cors, dotenv, express-jwt, express-validator, fast-csv, jsonwebtoken, mongoose, morgan, nodemon etc are used to handle various functionalities like parsing the request body, handling cookies, handling cross-origin resource sharing, loading environment variables, validating user inputs, handling CSV files, creating and verifying JSON web tokens, connecting to MongoDB, handling HTTP request logging, and automatically restarting the server when code changes.
 
 `nodemon`: Nodemon is a utility that automatically restarts the server when code changes are made.
 
@@ -29,20 +46,15 @@
 
 `dotenv`: A zero-dependency module that loads environment variables from a .env file.
 
-
 ### Frontend -
 
 - `React.js`: React.js is an open-source JavaScript library for building user interfaces. It is used for - building the UI of the project and managing the state of the application.
 
-- `Vite`: Vite is a lightweight development server that serves the project in the browser and hot-reloads - changes as you edit files.
+- `Vite`: Vite is a lightweight development server that serves the project in the browser and hot-reloads changes as you edit files.
 
 - `Chakra UI`: Chakra UI is a simple, modular, and accessible component library that gives you building blocks for your design system.
 
-- `Emotion`: Emotion is a library for styling components using the css-in-js approach.
-
 - `Axios`: Axios is a promise-based HTTP client for the browser and Node.js. It is used for making HTTP requests - to the backend API.
-
-- `Bootstrap`: Bootstrap is an open-source CSS framework that provides a set of pre-designed UI components and responsive grid system.
 
 - `Chart.js`: Chart.js is an open-source JavaScript library for creating charts. It is used for creating various - types of charts in the project.
 
@@ -50,11 +62,11 @@
 
 - `React-router-dom`: React-router-dom is a library used for client-side routing in React applications.
 
-- `React-icons `: A library used to include svg icons
+- `React-icons`: A library used to include svg icons
 
 - `PostCSS`: PostCSS is a tool for transforming CSS with JavaScript. It is used in conjunction with Autoprefixer and Tailwind CSS to ensure browser compatibility
 
-## Stock Market & Companies - Backend
+## StockX - Backend
 
 Welcome to the backend portion of our Stock Market & Companies project. Our goal is to create a robust and reliable backend that powers the platform's real-time data on stock market indices (NSE & BSE) as well as information on various companies such as Reliance, Ashok Leyland, Cipla, Tata Steel, and Eicher Motors.
 
@@ -66,6 +78,37 @@ This will start the server using nodemon, which will automatically restart the s
 We also use several middleware packages like `body-parser`, `cookie-parser`, `cors`, `dotenv`, `express-jwt`, `express-validator`, `fast-csv`, `jsonwebtoken`, `mongoose`, `morgan`, `nodemon` etc to handle various functionalities like parsing the request body, handling cookies, handling cross-origin resource sharing, loading environment variables, validating user inputs, handling CSV files, creating and verifying JSON web tokens, connecting to `MongoDB`, handling HTTP request logging, and automatically restarting the server when code changes.
 
 The project also uses `fast-csv` to handle CSV files, dotenv for loading environment variables and mongoose for connecting to MongoDB.
+
+## StockX - Frontend
+
+As developer of StockX, I faced several challenges while creating the frontend of the project. The first and biggest challenge was creating a seamless user experience for our users. I had to ensure that the website was easy to navigate and provided all the necessary information in an organized and easy-to-digest format.
+
+To overcome this challenge, I started by creating a well-structured project structure and organizing all the different components and pages in a logical and consistent manner. I also added a navigation bar at the top of the page for easy navigation between pages and a footer to the bottom of the page.
+
+Next, I created several reusable components such as dropdown menus, modals, spinners, and text components. These components were used throughout the application to provide a consistent look and feel. I also created a component to handle the display of charts, which is used to display various data points on the website.
+
+One of the main features of StockX is its ability to display data in the form of charts, so I had to ensure that the data was fetched and processed correctly. To do this, I made API calls to the backend using the Axios library. The data is then parsed and processed to extract the necessary information, such as the date labels, open prices, close prices, high prices, and low prices. This processed data is then used to create the Bar chart, which is rendered on the website for the users.
+
+In addition to creating the user interface, I also created a technical analysis page that allows users to view various technical indicators such as Moving Averages, Relative Strength Index (RSI), and Bollinger Bands. This page uses the Highcharts and Chart.js library to create line charts that display the data in an easy-to-read format. This page also includes a dropdown menu that allows users to select the specific indicator they want to view.
+
+I also created an "About Us" section, which provides information about the team behind the project. This section includes a brief description of each team member, as well as links to their social media profiles. This section also includes a link to the GitHub repository, which allows users to view the source code for the project.
+
+Overall, creating the frontend of StockX was a challenging but rewarding experience. Despite the challenges, I am proud of the end result and am confident that the website will provide a valuable service to its users.
+
+### Charts Used
+
+In the project, StockX uses Bar charts to display various data points on the website.
+
+- Open Price vs Date
+- Close Price vs Date
+- High Price vs Date
+- Low Price vs Date
+- Adj Close Price vs Date
+- Volume vs Date
+- Volatility vs Date
+- Technical Analysis Indicators (MACD, RSI, Bollinger Bands, etc.)
+
+All the charts are rendered on the website for the users to view and interact with, and it helps users to get a better understanding of the stock's performance over a given duration.
 
 ## API's
 
@@ -139,7 +182,6 @@ Start the server
 
 - `/stocks/:stockTicker` : This endpoint is used to retrieve a specific stock by its ticker symbol on the platform.
 
-
 ## Feedback 📝
 
 If you have any feedback, please reach out to us at 📫 adarsh.anand.20031@iitgoa.ac.in.
@@ -160,7 +202,7 @@ Please make sure to update tests as appropriate.
 | :----------------------------------------------------------------------------------------------------------------------------------: |
 
 | [<img src="https://github.com/AniketChaudhri.png?size=115" width=115><br><sub>@AniketChaudhri</sub>](https://github.com/AniketChaudhri) |
-| :----------------------------------------------------------------------------------------------------------------------------------: |
+| :-------------------------------------------------------------------------------------------------------------------------------------: |
 
 ## Acknowledgements 🙏
 
