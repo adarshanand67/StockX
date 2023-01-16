@@ -6,7 +6,7 @@ import { HiOutlineArrowRight } from "react-icons/hi";
 const FeedCard = ({ imgSrc, title, description, LearnMoreURL }) => {
   return (
     <>
-      <div className="bg-white rounded-lg shadow-lg p-5 flex flex-col justify-evenly">
+      <div className="bg-white rounded-lg shadow-2xl p-5 flex flex-col justify-evenly my-5">
         <img
           src={imgSrc}
           alt="feed"

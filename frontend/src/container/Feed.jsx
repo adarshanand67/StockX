@@ -4,7 +4,8 @@ import FeedCard from "./FeedCard";
 const Feed = () => {
   return (
     <>
-      <div className="grid grid-cols-3 gap-10 m-10">
+      {/* On small screens only one column */}
+      <div className="sm:grid sm:grid-cols-1 lg:grid-cols-3 m-10">
         <FeedCard
           imgSrc={
             "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
@@ -112,7 +113,6 @@ const Feed = () => {
             "https://www.investopedia.com/search?q=technical+analysis"
           }
         />
-
       </div>
     </>
   );

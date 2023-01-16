@@ -83,7 +83,7 @@ const companyToSvgPath = (company) => {
 };
 
 const DisplayCharts = ({ data, company, duration }) => {
-  console.log(data)
+  console.log(data);
   const RupeeSymbol = "\u20B9";
   const dateLabels = data.map((item) => dateFormater(item.Date));
   // console.log(dateLabels);
@@ -111,7 +111,7 @@ const DisplayCharts = ({ data, company, duration }) => {
   ).toFixed(2);
   const FirstOpeningPrice = parseInt(openPrices[0]).toFixed(2);
   // const latestDate = parseDate(pureDates[pureDates.length - 1]);
-  const latestDate = (pureDates[pureDates.length - 1]);
+  const latestDate = pureDates[pureDates.length - 1];
   console.log(latestDate);
 
   const priceChange = (lastClosingPrice - FirstOpeningPrice).toFixed(2);
@@ -221,77 +221,83 @@ const DisplayCharts = ({ data, company, duration }) => {
     <>
       <div className="w-5/6 mt-5 m-auto p-5 border border-gray-400 rounded-lg">
         {/* Company Name */}
-        <div className="grid grid-rows-2 grid-cols-2 m-5 rounded-lg">
+        <div className="sm:grid sm:grid-cols-1 lg:grid-cols-2 m-5 rounded-lg ">
           {/* 1 */}
-          <div>
-            {/* <ReactSVG src={path} width = "100px"/> */}
-            {/* {ashokley} */}
-            <h1 className="text-3xl font-bold text-gray-500 mx-5 py-2">
-              {company}{" "}
+          <div className="m-5 flex justify-start sm:justify-center">
+            <h1 className="text-3xl font-bold text-gray-500 lg:text-left ">
+              {company} <br />
               <span
-                className={`text-2xl font-bold text-${greenOrRed}-500`}
+                className={`text-xl font-bold text-${greenOrRed}-500`}
               >{` ${upOrDownArrow} ${priceChange} (${priceChangePercentage}%) `}</span>
               <br />
-              <span className="text-gray-400 font-thin text-lg ">
-                Last Updated : {latestDate}
+              <span className="text-gray-400 font-thin text-lg">
+                Last Updated:{latestDate}
               </span>
             </h1>
           </div>
           {/* 2 */}
-          <div className="flex justify-end">
+          <div className="flex justify-center sm:justify-end mx-5">
             <img src={path} alt="company" width="200px" />
           </div>
           {/* 3- 52 week data */}
           <div className="flex gap-5 items-center justify-left mt-5 mx-5">
             <div className="">
-              <h1 className=" font-bold bg-green-300 ">52 Week High</h1>
+              <h1 className=" font-bold bg-green-300 text-center ">
+                52 Week High
+              </h1>
               <h1 className=" text-center">{RupeeSymbol + WeekHigh52}</h1>
             </div>
             <div className="">
-              <h1 className="bg-red-400 font-bold ">52 Week Low</h1>
+              <h1 className="bg-red-400 font-bold text-center ">52 Week Low</h1>
               <h1 className=" text-center">{RupeeSymbol + WeekLow52}</h1>
             </div>
           </div>
           {/* 4-  Last closeing + first FirstOpeningPrice*/}
           <div className="flex gap-5 items-center justify-end mt-5 mx-5">
             <div className="">
-              <h1 className=" font-bold bg-green-300">Last Closing Price</h1>
+              <h1 className=" font-bold bg-green-300 text-center">
+                Last Closing Price
+              </h1>
               <h1 className=" text-center">{RupeeSymbol + lastClosingPrice}</h1>
             </div>
             <div className="">
-              <h1 className="bg-red-400 font-bold">First Opening Price</h1>
+              <h1 className="bg-red-400 font-bold text-center">
+                First Opening Price
+              </h1>
               <h1 className=" text-center">
                 {RupeeSymbol + FirstOpeningPrice}
               </h1>
             </div>
           </div>
         </div>
-        <div className="grid grid-rows-2 grid-cols-2 gap-4 m-5 p-5">
-          <div className="flex flex-col items-center justify-center">
+        {/* Charts */}
+        {/* 2 columns in general 1 in small screens */}
+        <div className="grid gap-4 sm:grid-cols-1 lg:grid-cols-2">
+          <div className="flex flex-col items-center justify-center sm:max-w-xs lg:max-w-lg">
             <h1 className="text-2xl font-bold">Open Price vs Date</h1>
             <Bar data={Open_vs_Date} options={options} />
           </div>
-          <div className="flex flex-col items-center justify-center">
+          <div className="flex flex-col items-center justify-center max-w-xs  lg:max-w-lg">
             <h1 className="text-2xl font-bold">Close Price vs Date</h1>
             <Bar data={Close_vs_Date} options={options} />
           </div>
-          <div className="flex flex-col items-center justify-center">
+          <div className="flex flex-col items-center justify-center max-w-xs lg:max-w-lg">
             <h1 className="text-2xl font-bold">High Price vs Date</h1>
             <Bar data={High_vs_Date} options={options} />
           </div>
-          <div className="flex flex-col items-center justify-center">
+          <div className="flex flex-col items-center justify-center max-w-xs  lg:max-w-lg">
             <h1 className="text-2xl font-bold">Low Price vs Date</h1>
             <Bar data={Low_vs_Date} options={options} />
           </div>
-          <div className="flex flex-col items-center justify-center">
+          <div className="flex flex-col items-center justify-center max-w-xs  lg:max-w-lg">
             <h1 className="text-2xl font-bold">Adj Close vs Date</h1>
             <Bar data={AdjClose_vs_Date} options={options} />
           </div>
-          <div className="flex flex-col items-center justify-center">
+          <div className="flex flex-col items-center justify-center max-w-xs  lg:max-w-lg">
             <h1 className="text-2xl font-bold">Volume vs Date</h1>
             <Bar data={Volume_vs_Date} options={options} />
           </div>
-          <div className="flex flex-col items-center justify-center">
+          <div className="flex flex-col items-center justify-center max-w-xs  lg:max-w-lg">
             <h1 className="text-2xl font-bold">Volatility vs Date</h1>
             <Bar data={Volatility_vs_Date} options={options} />
           </div>
