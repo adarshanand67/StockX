@@ -1,4 +1,4 @@
-# StockX
+![logo (1)](https://user-images.githubusercontent.com/73928744/212635984-aae9a7eb-7887-4f7b-bbdb-4f98a04328c6.svg) <h1> StockX </h1>
 
 ## Tech Stack
 
