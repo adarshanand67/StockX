@@ -26,6 +26,24 @@ Despite the obstacles and hardships, I persisted and StockX was finally ready to
 
 It was a humbling experience to see how my vision had become a reality, and it was all worth it. I continue to work on StockX, adding new features and improving the user experience, and I am excited to see where this project will take me in the future.
 
+## Screenshots
+
+HomePage:
+| ![HomePage](https://user-images.githubusercontent.com/79798301/212641749-a9a810aa-0c60-4d32-9884-b9c630feb0a4.png) |
+| :----------------------------------------------------------------------------------------------------------------------------------: |
+
+Company Data and Charts:
+| ![Company_Data](https://user-images.githubusercontent.com/79798301/212642315-4a98426d-931b-4425-8284-1e2c63f63417.png) |
+| :----------------------------------------------------------------------------------------------------------------------------------: |
+
+Stock-Exchange Data:
+| ![image](https://user-images.githubusercontent.com/79798301/212642658-80249476-e35c-4a65-bc17-e602a9122a84.png) |
+| :----------------------------------------------------------------------------------------------------------------------------------: |
+
+Technical Analysis:
+| ![image](https://user-images.githubusercontent.com/79798301/212643177-63061d26-d898-46d0-9483-6ab0482fb9e1.png) |
+| :----------------------------------------------------------------------------------------------------------------------------------: |
+
 ## Tech Stack
 
 ### Backend -
@@ -181,6 +199,7 @@ Start the server
 - `/stocks` : This endpoint is used to retrieve a list of all stocks on the platform.
 
 - `/stocks/:stockTicker` : This endpoint is used to retrieve a specific stock by its ticker symbol on the platform.
+
 
 ## Feedback 📝
 
