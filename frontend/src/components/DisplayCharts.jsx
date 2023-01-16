@@ -223,8 +223,8 @@ const DisplayCharts = ({ data, company, duration }) => {
         {/* Company Name */}
         <div className="sm:grid sm:grid-cols-1 lg:grid-cols-2 m-5 rounded-lg ">
           {/* 1 */}
-          <div className="m-5 flex justify-start sm:justify-center">
-            <h1 className="text-3xl font-bold text-gray-500 lg:text-left ">
+          <div className="m-5 flex justify-start">
+            <h1 className="text-3xl font-bold text-gray-500  ">
               {company} <br />
               <span
                 className={`text-xl font-bold text-${greenOrRed}-500`}
